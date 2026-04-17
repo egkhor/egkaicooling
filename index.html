@@ -372,6 +372,48 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:va
                 font-size: 0.9rem;
                 min-height: 20px;
             }
+            
+            // Block right-click 
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Block common DevTools shortcuts
+
+document.addEventListener('keydown', function(e) {
+
+    if (
+
+        e.key === 'F12' ||
+
+        (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
+
+        (e.ctrlKey && e.key === 'U')
+
+    ) {
+
+        e.preventDefault();
+
+    }
+
+});
+
+// Detect DevTools
+
+setInterval(function() {
+
+    const devtoolsOpen =
+
+        window.outerWidth - window.innerWidth > 100 ||
+
+        window.outerHeight - window.innerHeight > 100;
+
+    if (devtoolsOpen) {
+
+        document.body.innerHTML = "Access Denied";
+
+    }
+
+}, 1000);
 </style>
 </head>
 <body>
