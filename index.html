@@ -298,6 +298,65 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:va
   .video-container{display:none;}
   .reveal{opacity:1;transform:none;}
 }
+    
+    /* ADD THIS NEW PASSWORD STYLES */
+            #password-screen {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: linear-gradient(135deg, #0A1F5C, #1042B0);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+            }
+            .password-box {
+                background: white;
+                padding: 40px 50px;
+                border-radius: 16px;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                text-align: center;
+                max-width: 380px;
+                width: 90%;
+            }
+            .password-box h2 {
+                color: #0A1F5C;
+                margin-bottom: 20px;
+            }
+            #password-input {
+                width: 100%;
+                padding: 14px 16px;
+                font-size: 1.1rem;
+                border: 2px solid #D1DBE8;
+                border-radius: 8px;
+                margin: 15px 0;
+                text-align: center;
+                letter-spacing: 2px;
+            }
+            #password-input:focus {
+                outline: none;
+                border-color: #1565C0;
+            }
+            #submit-btn {
+                background: #1565C0;
+                color: white;
+                border: none;
+                padding: 14px 40px;
+                font-size: 1rem;
+                font-weight: 700;
+                border-radius: 8px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+            #submit-btn:hover {
+                background: #1042B0;
+            }
+            #error-msg {
+                color: #DC2626;
+                margin-top: 12px;
+                font-size: 0.9rem;
+                min-height: 20px;
+            }
 </style>
 </head>
 <body>
@@ -329,6 +388,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:va
     <a href="#demo" class="snav-link">Demo Video</a>
     <a href="#app" class="snav-link">Aplikasi</a>
     <a href="#sokongan" class="snav-link">Sokongan KPM</a>
+    <a href="#kategori" class="snav-link">Kategori &amp; Ciri</a>
+    <a href="#sasaran" class="snav-link">Sasaran Pengguna</a>
+    <a href="#kos" class="snav-link">Kos &amp; Pembiayaan</a>
     <a href="#permohonan" class="snav-link">Permohonan</a>
   </div>
 </nav>
@@ -430,7 +492,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:va
           ✓ Dilengkapi aplikasi AR percuma EGK AIAdv AR<br>
           ✓ Maskot AI "Aida" yang interaktif dalam 3D<br>
           ✓ Tanpa peralatan mahal — hanya buku dan pensil<br>
-          ✓ Disahkan selaras DSKP KPM
+          ✓ Disahkan selaras DSKP KPM - https://bpk.moe.gov.my/kurikulum/kssr
         </div>
       </div>
     </div>
@@ -868,6 +930,217 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:va
 </section>
 <div class="section-divider"></div>
 
+<!-- ─── SECTION 10: KATEGORI & CIRI ─── -->
+<section id="kategori" class="formal-section">
+  <div class="section-wrap">
+    <div class="sec-num reveal">10 · Kategori, Jenis &amp; Ciri-Ciri Produk</div>
+    <h2 class="sec-heading reveal">Apakah Kategori, Jenis<br>dan Ciri-Ciri Produk Ini?</h2>
+    <p class="sec-lead reveal">EGK AI Adventure adalah pakej pendidikan bersepadu (hybrid) yang menggabungkan buku aktiviti fizikal dengan aplikasi mudah alih berteknologi AR — direka khusus untuk murid sekolah rendah Malaysia.</p>
+
+    <table class="req-table reveal">
+      <thead><tr><th style="width:220px;">Aspek</th><th>Butiran Ringkas</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Kategori</strong></td><td><span class="badge-pill bp-ready" style="margin-right:6px;">Pendidikan Digital (EdTech)</span><span class="badge-pill bp-yes" style="margin-right:6px;">Pendidikan Kecerdasan Buatan (AI)</span><span class="badge-pill bp-review">Teknologi Augmented Reality (AR)</span></td></tr>
+        <tr><td><strong>Jenis Produk</strong></td><td>Pakej pendidikan bersepadu (Hybrid):<br>1. Buku aktiviti fizikal <em>Pengembaraan AI / AI Adventure</em><br>2. Aplikasi mudah alih <em>EGK AIAdv AR</em></td></tr>
+        <tr><td><strong>Sasaran Pengguna</strong></td><td>Murid sekolah rendah Tahun 1 – Tahun 6 (umur 6–12 tahun)</td></tr>
+        <tr><td><strong>Platform</strong></td><td>Buku bercetak + Aplikasi iOS &amp; Android</td></tr>
+        <tr><td><strong>Bahasa</strong></td><td>🇲🇾 Bahasa Melayu &nbsp;|&nbsp; 🇬🇧 Bahasa Inggeris &nbsp;|&nbsp; 🀄 Bahasa Cina</td></tr>
+        <tr><td><strong>Pendekatan Pembelajaran</strong></td><td>Pembelajaran berperingkat, interaktif dan berasaskan pengalaman (<em>experiential learning</em>)</td></tr>
+        <tr><td><strong>Elemen Teknologi</strong></td><td><span class="badge-pill bp-ready" style="margin-right:4px;">Realiti Terimbuh / AR 3D</span><span class="badge-pill bp-yes" style="margin-right:4px;">Interaksi Suara &amp; Sentuhan</span><span class="badge-pill bp-review">Imbas QR dari Buku</span></td></tr>
+        <tr><td><strong>Kandungan Utama</strong></td><td>Pengenalan AI, corak &amp; ramalan, latihan AI, seni AI, kerjaya masa hadapan, etika AI</td></tr>
+        <tr><td><strong>Penjajaran Kurikulum</strong></td><td>Selaras dengan KSSR, Kerangka Kompetensi AI UNESCO, Pelan Pembangunan Pendidikan Malaysia</td></tr>
+        <tr><td><strong>Ciri Keselamatan</strong></td><td><span class="badge-pill bp-yes" style="margin-right:4px;">Tiada Pengumpulan Data</span><span class="badge-pill bp-yes" style="margin-right:4px;">Tiada Iklan</span><span class="badge-pill bp-yes">Tiada Pembelian Dalam Aplikasi</span></td></tr>
+        <tr><td><strong>Nilai &amp; Etika</strong></td><td>Penekanan kepada keadilan, privasi, keselamatan, dan kawalan manusia terhadap AI</td></tr>
+        <tr><td><strong>Kandungan Tempatan</strong></td><td>Ikon &amp; budaya Malaysia — Durian, Batik, Wau Bulan, Menara Petronas, Harimau Malaya, dll.</td></tr>
+        <tr><td><strong>Kegunaan</strong></td><td>Boleh digunakan di sekolah, di rumah, secara individu atau berkumpulan</td></tr>
+      </tbody>
+    </table>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;">
+      <div class="info-card reveal" style="border-top-color:#1042B0;">
+        <div class="info-card-icon">📚</div>
+        <div class="info-card-title">Jenis 1: Buku Aktiviti Fizikal</div>
+        <div class="info-card-body">Buku <em>Pengembaraan AI / AI Adventure</em> — 6 bab untuk Tahun 1–6, aktiviti bercetak, QR kod, lembaran kerja, lencana dan sijil. Tersedia dalam 3 bahasa.</div>
+      </div>
+      <div class="info-card reveal" style="border-top-color:#D4A017;">
+        <div class="info-card-icon">📱</div>
+        <div class="info-card-title">Jenis 2: Aplikasi Mudah Alih AR</div>
+        <div class="info-card-body">Aplikasi <em>EGK AIAdv AR</em> — percuma untuk iOS &amp; Android. Imbas QR dalam buku, maskot Aida muncul dalam 3D AR, bermain permainan interaktif, dan memberikan sijil graduasi digital.</div>
+      </div>
+      <div class="info-card reveal" style="border-top-color:#166534;">
+        <div class="info-card-icon">🌐</div>
+        <div class="info-card-title">Platform Hybrid Bersepadu</div>
+        <div class="info-card-body">Gabungan buku fizikal + aplikasi digital — pengalaman pembelajaran yang tidak memerlukan peralatan mahal. Sesuai untuk semua sekolah termasuk kawasan luar bandar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 11: SASARAN PENGGUNA ─── -->
+<section id="sasaran" class="formal-section alt">
+  <div class="section-wrap">
+    <div class="sec-num reveal">11 · Sasaran Pengguna</div>
+    <h2 class="sec-heading reveal">Siapakah Sasaran Pengguna<br>dalam Institusi Pendidikan KPM?</h2>
+    <p class="sec-lead reveal">Produk ini direka untuk digunakan bersama oleh tiga kumpulan pengguna utama dalam ekosistem pendidikan KPM — murid sebagai pengguna utama, guru sebagai fasilitator, dan ibu bapa / penjaga sebagai penyokong pembelajaran di rumah.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:24px;">
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(10,31,92,.07);" class="reveal">
+        <div style="background:linear-gradient(135deg,#1042B0,#1565C0);padding:18px 18px 14px;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">👧🏫</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;color:white;font-weight:700;">Murid</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:2px;letter-spacing:.8px;text-transform:uppercase;">Pengguna Utama</div>
+        </div>
+        <div style="padding:16px 18px;">
+          <div style="display:inline-block;background:#DBEAFE;color:#1E40AF;font-size:.7rem;font-weight:800;padding:2px 10px;border-radius:50px;margin-bottom:10px;">TAHUN 1–6 · UMUR 6–12</div>
+          <ul style="list-style:none;font-size:.8rem;color:var(--muted);line-height:2.1;">
+            <li style="display:flex;gap:7px;"><span style="color:#1042B0;font-weight:700;">&#10003;</span> Pengguna utama buku aktiviti dan aplikasi AR</li>
+            <li style="display:flex;gap:7px;"><span style="color:#1042B0;font-weight:700;">&#10003;</span> Memahami konsep AI secara interaktif dan visual</li>
+            <li style="display:flex;gap:7px;"><span style="color:#1042B0;font-weight:700;">&#10003;</span> Belajar AI, etika, kreativiti &amp; pemikiran kritikal</li>
+            <li style="display:flex;gap:7px;"><span style="color:#1042B0;font-weight:700;">&#10003;</span> Melalui permainan, projek, AR dan refleksi</li>
+            <li style="display:flex;gap:7px;"><span style="color:#1042B0;font-weight:700;">&#10003;</span> Membuat janji etika AI dan sijil penjelajah</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(10,31,92,.07);" class="reveal">
+        <div style="background:linear-gradient(135deg,#166534,#16a34a);padding:18px 18px 14px;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">&#128104;&#8205;&#127979;&#128203;</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;color:white;font-weight:700;">Guru</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:2px;letter-spacing:.8px;text-transform:uppercase;">Fasilitator Pembelajaran</div>
+        </div>
+        <div style="padding:16px 18px;">
+          <div style="display:inline-block;background:#DCFCE7;color:#166534;font-size:.7rem;font-weight:800;padding:2px 10px;border-radius:50px;margin-bottom:10px;">TIADA KEPAKARAN TEKNIKAL AI DIPERLUKAN</div>
+          <ul style="list-style:none;font-size:.8rem;color:var(--muted);line-height:2.1;">
+            <li style="display:flex;gap:7px;"><span style="color:#166534;font-weight:700;">&#10003;</span> Menggunakan buku sebagai bahan bantu mengajar selaras KSSR</li>
+            <li style="display:flex;gap:7px;"><span style="color:#166534;font-weight:700;">&#10003;</span> Membimbing aktiviti kelas, perbincangan &amp; refleksi etika AI</li>
+            <li style="display:flex;gap:7px;"><span style="color:#166534;font-weight:700;">&#10003;</span> Panduan guru lengkap disertakan dalam buku</li>
+            <li style="display:flex;gap:7px;"><span style="color:#166534;font-weight:700;">&#10003;</span> Rancangan pengajaran mingguan Tahun 1–Tahun 6</li>
+            <li style="display:flex;gap:7px;"><span style="color:#166534;font-weight:700;">&#10003;</span> Tidak memerlukan kepakaran teknikal AI yang tinggi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(10,31,92,.07);" class="reveal">
+        <div style="background:linear-gradient(135deg,#92400E,#B45309);padding:18px 18px 14px;text-align:center;">
+          <div style="font-size:2.4rem;margin-bottom:8px;">&#128106;&#127968;</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;color:white;font-weight:700;">Ibu Bapa / Penjaga</div>
+          <div style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:2px;letter-spacing:.8px;text-transform:uppercase;">Penyokong Pembelajaran di Rumah</div>
+        </div>
+        <div style="padding:16px 18px;">
+          <div style="display:inline-block;background:#FEF9C3;color:#854D0E;font-size:.7rem;font-weight:800;padding:2px 10px;border-radius:50px;margin-bottom:10px;">PEMBELAJARAN BERTERUSAN DI RUMAH</div>
+          <ul style="list-style:none;font-size:.8rem;color:var(--muted);line-height:2.1;">
+            <li style="display:flex;gap:7px;"><span style="color:#92400E;font-weight:700;">&#10003;</span> Membantu anak menggunakan aplikasi AR dengan selamat</li>
+            <li style="display:flex;gap:7px;"><span style="color:#92400E;font-weight:700;">&#10003;</span> Memantau penggunaan AI dan peranti digital</li>
+            <li style="display:flex;gap:7px;"><span style="color:#92400E;font-weight:700;">&#10003;</span> Menggalakkan perbincangan nilai &amp; etika AI di rumah</li>
+            <li style="display:flex;gap:7px;"><span style="color:#92400E;font-weight:700;">&#10003;</span> Panduan ibu bapa untuk 10 modul terbaik di rumah</li>
+            <li style="display:flex;gap:7px;"><span style="color:#92400E;font-weight:700;">&#10003;</span> Aplikasi AR 100% selamat — tiada iklan, tiada data</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;background:linear-gradient(135deg,#EFF6FF,#EEF2FF);border:1px solid #BFDBFE;border-radius:12px;padding:20px 24px;border-left:4px solid #1042B0;" class="reveal">
+      <div style="font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:8px;">&#128221; Rumusan Sasaran Pengguna</div>
+      <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">Produk ini direka untuk digunakan bersama oleh murid, guru dan ibu bapa, dengan <strong style="color:var(--navy);">murid sebagai pengguna utama</strong>, <strong style="color:var(--navy);">guru sebagai pembimbing pembelajaran di sekolah</strong>, dan <strong style="color:var(--navy);">ibu bapa sebagai penyokong serta pemantau pembelajaran di rumah</strong>. Ketiga-tiga kumpulan ini bekerja bersama-sama untuk memastikan pengalaman pembelajaran AI yang selamat, bermakna dan berkesan.</div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ─── SECTION 12: KOS & PEMBIAYAAN ─── -->
+<section id="kos" class="formal-section">
+  <div class="section-wrap">
+    <div class="sec-num reveal">12 · Kos &amp; Pembiayaan</div>
+    <h2 class="sec-heading reveal">Berapakah Kos?<br>Siapa yang Akan Membiayainya?</h2>
+    <p class="sec-lead reveal">Kos terbahagi kepada kos perolehan awal (sekali sahaja) dan kos penyelenggaraan tahunan. Penanggung kos yang dicadangkan untuk perolehan pukal ini adalah <strong>Kementerian Pendidikan Malaysia (KPM)</strong>, disalurkan melalui dana perolehan teknologi pendidikan dan inovasi KPM.</p>
+
+    <div style="background:linear-gradient(135deg,#040F2E,#0A2050);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:center;gap:16px;" class="reveal">
+      <div style="font-size:2.5rem;flex-shrink:0;">&#127963;</div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:white;margin-bottom:4px;">Penanggung Kos yang Dicadangkan</div>
+        <div style="font-weight:800;font-size:1rem;color:#D4A017;margin-bottom:4px;">Kementerian Pendidikan Malaysia (KPM)</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.65);">Disalurkan melalui dana perolehan teknologi pendidikan dan inovasi KPM</div>
+      </div>
+    </div>
+
+    <table class="req-table reveal">
+      <thead>
+        <tr><th>Perkara</th><th style="text-align:right;min-width:150px;">Harga / Kos</th><th>Pengiraan / Catatan</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:#EFF6FF;"><td colspan="3" style="font-weight:800;color:var(--navy);font-size:.8rem;letter-spacing:.5px;padding:10px 14px;">&#128309; KOS PEROLEHAN AWAL (SEKALI SAHAJA)</td></tr>
+        <tr>
+          <td><strong>Kos Perolehan Lesen Pukal</strong><br><span style="font-size:.76rem;color:var(--muted);">Lesen Aplikasi EGK AIAdv AR (Akses Penuh Tahun 1–6)</span></td>
+          <td style="text-align:right;"><strong style="font-size:1.1rem;color:var(--navy);">RM 30</strong><br><span style="font-size:.72rem;color:var(--muted);">per peranti</span></td>
+          <td style="font-size:.8rem;color:var(--muted);">Lesen aplikasi EGK AIAdv AR (akses penuh Tahun 1–6)<br>Dibayar <em>sekali</em> bagi setiap peranti murid / sekolah</td>
+        </tr>
+        <tr>
+          <td><strong>Kos Latihan Nasional</strong><br><span style="font-size:.76rem;color:var(--muted);">Program Latihan Guru Utama Peringkat Nasional</span></td>
+          <td style="text-align:right;"><strong style="font-size:1.1rem;color:var(--navy);">RM 150,000</strong><br><span style="font-size:.72rem;color:var(--muted);">kos tetap</span></td>
+          <td style="font-size:.8rem;color:var(--muted);">Latihan penggunaan buku &amp; aplikasi<br>Modul pedagogi AI &amp; etika<br>Boleh melatih jurulatih negeri (<em>train-the-trainer</em>)</td>
+        </tr>
+        <tr style="background:#F0FDF4;"><td colspan="3" style="font-weight:800;color:#166534;font-size:.8rem;letter-spacing:.5px;padding:10px 14px;">&#128994; KOS PELESENAN TAHUNAN (BERTERUSAN)</td></tr>
+        <tr>
+          <td><strong>Kos Pelesenan Tahunan</strong><br><span style="font-size:.76rem;color:var(--muted);">Penyelenggaraan &amp; Kemas Kini Berterusan</span></td>
+          <td style="text-align:right;"><strong style="font-size:1.1rem;color:var(--navy);">RM 10</strong><br><span style="font-size:.72rem;color:var(--muted);">per peranti / tahun</span></td>
+          <td style="font-size:.8rem;color:var(--muted);">Penyelenggaraan kandungan<br>Kemas kini AR &amp; AI<br>Sokongan teknikal<br>Penambahbaikan selaras dasar KPM &amp; UNESCO</td>
+        </tr>
+        <tr style="background:#FFFBEB;"><td colspan="3" style="font-weight:800;color:#92400E;font-size:.8rem;letter-spacing:.5px;padding:10px 14px;">&#128218; KOS BUKU FIZIKAL (BERASINGAN)</td></tr>
+        <tr>
+          <td><strong>Kos Buku (Hak Cipta &amp; Pencetakan)</strong><br><span style="font-size:.76rem;color:var(--muted);">Buku Fizikal Berhak Cipta EGK</span></td>
+          <td style="text-align:right;"><strong style="font-size:1.1rem;color:var(--navy);">Mengikut Bilangan</strong><br><span style="font-size:.72rem;color:var(--muted);">boleh dirunding</span></td>
+          <td style="font-size:.8rem;color:var(--muted);">Kos cetakan boleh dirunding secara pukal<br>Hak cipta kekal milik EGK<br>Tersedia dalam BM, Inggeris &amp; Mandarin</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:24px;">
+      <div style="background:linear-gradient(135deg,var(--navy),#0D2560);border-radius:12px;padding:20px;text-align:center;color:white;" class="reveal">
+        <div style="font-size:.72rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Jumlah Kos Tahun Pertama</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#D4A017;font-weight:800;">RM 190,000</div>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.6);margin-top:4px;">Bagi 1,000 peranti</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.45);margin-top:3px;">Termasuk lesen pukal + latihan nasional + tidak termasuk kos buku fizikal</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#166534,#16a34a);border-radius:12px;padding:20px;text-align:center;color:white;" class="reveal">
+        <div style="font-size:.72rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Huraian Jumlah Kos</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#86EFAC;font-weight:800;">RM 190,000</div>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.7);margin-top:4px;">RM 30 x 1000 lesen + RM 150,000 bahagian latihan + RM10 x 1000 lesen</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;">Tidak termasuk kos buku fizikal</div>
+      </div>
+      <div style="background:linear-gradient(135deg,#92400E,#B45309);border-radius:12px;padding:20px;text-align:center;color:white;" class="reveal">
+        <div style="font-size:.72rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Kos Tahunan Berterusan</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#FDE68A;font-weight:800;">RM 10</div>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.7);margin-top:4px;">per peranti / tahun</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.55);margin-top:3px;">Selepas tahun pertama</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;background:linear-gradient(135deg,#FAFAF7,#F5F5EE);border:1px solid #E8D5A3;border-radius:12px;padding:22px 24px;border-left:4px solid #D4A017;" class="reveal">
+      <div style="font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:12px;">&#128161; Nilai untuk Wang (Value for Money)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;font-size:.82rem;color:var(--muted);line-height:1.9;">
+        <div>
+          <strong style="color:var(--navy);">&#10003; Buku bercetak + Aplikasi AR percuma</strong> dalam satu pakej<br>
+          <strong style="color:var(--navy);">&#10003; Liputan penuh 6 tahun KSSR</strong> — Tahun 1 hingga Tahun 6<br>
+          <strong style="color:var(--navy);">&#10003; Tiga bahasa</strong> — BM, Inggeris, Mandarin<br>
+          <strong style="color:var(--navy);">&#10003; Tiada peralatan mahal</strong> — hanya buku + telefon
+        </div>
+        <div>
+          <strong style="color:var(--navy);">&#10003; Kemas kini kandungan</strong> selaras perubahan dasar KPM &amp; UNESCO<br>
+          <strong style="color:var(--navy);">&#10003; Sokongan teknikal</strong> berterusan sepanjang tempoh lesen<br>
+          <strong style="color:var(--navy);">&#10003; Latihan guru nasional</strong> termasuk dalam kos tahun pertama<br>
+          <strong style="color:var(--navy);">&#10003; Selamat sepenuhnya</strong> — tiada data, tiada iklan, tiada bayaran tambahan
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;background:#FFF1F2;border:1px solid #FECDD3;border-radius:8px;padding:12px 16px;font-size:.78rem;color:#9F1239;" class="reveal">
+      <strong>&#128204; Nota:</strong> Kos di atas adalah anggaran untuk 1,000 unit. Kos sebenar akan disesuaikan mengikut bilangan murid, sekolah dan negeri yang terlibat dalam projek rintis. EGK bersedia untuk berbincang mengenai pakej perolehan pukal yang lebih baik untuk skala nasional.
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
 <!-- ─── SECTION 9: PERMOHONAN ─── -->
 <section id="permohonan" class="formal-section" style="background:linear-gradient(135deg,#040F2E,#0A2050);">
   <div class="section-wrap">
@@ -980,7 +1253,62 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:va
   </div>
 </div>
 
+<!-- PASSWORD SCREEN -->
+<div id="password-screen">
+    <div class="password-box">
+        <h2>🔒 Pembentangan Sulit</h2>
+        <p style="color:#5A6A82; margin-bottom:20px;">Masukkan kata laluan untuk melihat dokumen ini</p>
+        
+        <input type="password" id="password-input" placeholder="Kata Laluan" autocomplete="off">
+        <button id="submit-btn">Masuk</button>
+        <div id="error-msg"></div>
+    </div>
+</div>
+
 <script>
+    
+    // ==================== PASSWORD PROTECTION ====================
+    const correctPassword = "KpmEgk2026";
+
+    function checkPassword() {
+        const input = document.getElementById("password-input").value.trim();
+        const errorMsg = document.getElementById("error-msg");
+        const passwordScreen = document.getElementById("password-screen");
+
+        if (input === correctPassword) {
+            passwordScreen.style.display = "none";   // Hide password screen
+            document.body.style.overflow = "auto";   // Enable scrolling
+        } else {
+            errorMsg.textContent = "❌ Kata laluan salah. Sila cuba lagi.";
+            document.getElementById("password-input").value = "";
+            document.getElementById("password-input").focus();
+            
+            // Shake animation
+            passwordScreen.style.animation = "shake 0.4s";
+            setTimeout(() => passwordScreen.style.animation = "", 400);
+        }
+    }
+
+    // Enter key support
+    document.getElementById("password-input").addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            checkPassword();
+        }
+    });
+
+    document.getElementById("submit-btn").addEventListener("click", checkPassword);
+
+    // Optional: Add shake animation
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+    `;
+    document.head.appendChild(style);
+    // ==================== END PASSWORD PROTECTION ====================
 // Video tab switching
 function switchVideo(id,el){
   document.querySelectorAll('.vtab').forEach(t=>t.classList.remove('active'));
@@ -1011,3 +1339,6 @@ document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 </script>
 </body>
 </html>
+
+
+
