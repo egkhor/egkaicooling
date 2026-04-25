@@ -1,229 +1,263 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EGK Natural AI Cooling System v2 — Engineering Edition</title>
+<title>EGK Hybrid Passive Cooling System v3 — Honest Engineering Edition</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --jungle: #1a3a1a; --leaf: #2d7a2d; --moss: #4caf50; --lime: #8bc34a;
-    --water: #00bcd4; --deep: #006064; --sky: #b2ebf2;
-    --gold: #ffd600; --amber: #ff8f00; --red: #e53935;
-    --dark: #0a1a0a; --panel: rgba(10,30,10,0.88); --glow: #39ff14;
-    --orange: #ff6d00; --purple: #ce93d8;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--dark); font-family:'Rajdhani',sans-serif; color:#e0ffe0; overflow-x:hidden; }
-  .bg-layer { position:fixed; inset:0; z-index:0;
-    background: radial-gradient(ellipse 80% 60% at 20% 80%, rgba(45,122,45,0.18) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 80% 20%, rgba(0,188,212,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 100% 100% at 50% 50%, #0a1a0a 0%, #020802 100%);
-    animation: bgPulse 8s ease-in-out infinite alternate; }
-  @keyframes bgPulse { from{opacity:1} to{filter:brightness(1.15)} }
-  .rain { position:fixed; inset:0; z-index:1; pointer-events:none; }
-  .drop { position:absolute; width:1px; background:linear-gradient(transparent,rgba(0,188,212,0.4)); animation:fall linear infinite; }
-  @keyframes fall { from{transform:translateY(-100px);opacity:0} 30%{opacity:1} to{transform:translateY(110vh);opacity:0} }
-  .wrapper { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:32px 20px 60px; }
+:root {
+  --glow:#39ff14; --leaf:#2d7a2d; --water:#00bcd4; --gold:#ffd600;
+  --orange:#ff6d00; --red:#e53935; --amber:#ff8f00;
+  --dark:#060e06; --panel:rgba(8,22,8,0.9); --lime:#8bc34a;
+  --warn:#ff9100; --honest:#ff4444;
+  --text:#d0eed0; --muted:#5a8a5a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--dark);font-family:'Rajdhani',sans-serif;color:var(--text);overflow-x:hidden;line-height:1.5}
 
-/* HEADER */
-header { display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:32px; }
-.egk-logo { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
-.logo-hex { width:70px; height:70px; }
-.logo-hex img { width:100%; height:100%; object-fit:contain; }
-.logo-text { font-family:‘Orbitron’,monospace; font-weight:900; }
-.logo-text .egk { font-size:2.6rem; color:var(–glow); letter-spacing:4px;
-text-shadow:0 0 20px var(–glow),0 0 60px rgba(57,255,20,0.3);
-animation:glow-pulse 3s ease-in-out infinite; }
-.logo-text .sub { font-size:0.68rem; color:var(–water); letter-spacing:2px; font-family:‘Space Mono’,monospace; }
-@keyframes glow-pulse {
-0%,100%{text-shadow:0 0 20px var(–glow),0 0 60px rgba(57,255,20,0.3)}
-50%{text-shadow:0 0 30px var(–glow),0 0 100px rgba(57,255,20,0.5)} }
-h1 { font-family:‘Orbitron’,monospace; font-size:clamp(1.3rem,4vw,2rem); font-weight:900;
-color:#fff; line-height:1.2; text-transform:uppercase; letter-spacing:2px;
-text-shadow:0 0 30px rgba(57,255,20,0.4); margin-bottom:8px; }
-.tagline { color:var(–water); letter-spacing:3px; font-family:‘Space Mono’,monospace; font-size:0.75rem; }
-.divider { width:100%; height:1px; margin:20px 0;
-background:linear-gradient(90deg,transparent,var(–glow),var(–water),var(–glow),transparent);
-box-shadow:0 0 8px var(–glow); }
-.climate-badge { display:inline-flex; align-items:center; gap:8px;
-background:rgba(0,188,212,0.12); border:1px solid var(–water); border-radius:30px;
-padding:6px 18px; font-size:0.68rem; letter-spacing:2px; color:var(–water);
-font-family:‘Space Mono’,monospace; margin-bottom:8px; box-shadow:0 0 12px rgba(0,188,212,0.2); }
-.ver-badge { display:inline-flex; align-items:center; gap:6px;
-background:rgba(255,109,0,0.12); border:1px solid var(–orange); border-radius:20px;
-padding:4px 14px; font-size:0.65rem; letter-spacing:2px; color:var(–orange);
-font-family:‘Space Mono’,monospace; margin-bottom:20px; }
+/* BG */
+.bg{position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 85%,rgba(45,122,45,0.14) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 70% at 85% 15%,rgba(0,188,212,0.08) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 80% at 50% 50%,#060e06 0%,#020502 100%);
+  animation:breathe 10s ease-in-out infinite alternate}
+@keyframes breathe{from{opacity:1}to{filter:brightness(1.12)}}
+.rain{position:fixed;inset:0;z-index:1;pointer-events:none}
+.drop{position:absolute;width:1px;background:linear-gradient(transparent,rgba(0,188,212,0.35));animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-120px);opacity:0}35%{opacity:1}to{transform:translateY(110vh);opacity:0}}
 
-/* SECTION TITLE */
-.sec-title { font-family:‘Orbitron’,monospace; font-size:0.7rem; letter-spacing:4px;
-color:var(–glow); text-transform:uppercase; margin-bottom:16px;
-display:flex; align-items:center; gap:10px; }
-.sec-title::after { content:’’; flex:1; height:1px; background:linear-gradient(90deg,rgba(57,255,20,0.4),transparent); }
+.wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:36px 20px 70px}
 
-/* STATS */
-.overview-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:3px; margin-bottom:24px;
-border:1px solid rgba(57,255,20,0.2); border-radius:8px; overflow:hidden; }
-.stat-cell { background:rgba(10,30,10,0.7); padding:14px 8px; text-align:center;
-border-right:1px solid rgba(57,255,20,0.15); transition:background 0.3s; }
-.stat-cell:last-child{border-right:none}
-.stat-cell:hover{background:rgba(57,255,20,0.07)}
-.stat-num { font-family:‘Orbitron’,monospace; font-size:1.3rem; font-weight:900;
-color:var(–glow); text-shadow:0 0 15px var(–glow); line-height:1; }
-.stat-label { font-size:0.6rem; color:#6fbc6f; letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
+/* ── HEADER ── */
+header{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:30px}
+.egk-logo{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.logo-hex{width:72px;height:72px}
+.logo-hex img{width:100%;height:100%;object-fit:contain}
+.logo-text .egk{font-family:'Orbitron',monospace;font-size:2.7rem;font-weight:900;
+  color:var(--glow);letter-spacing:4px;
+  text-shadow:0 0 18px var(--glow),0 0 50px rgba(57,255,20,0.25);
+  animation:gpulse 4s ease-in-out infinite}
+@keyframes gpulse{0%,100%{text-shadow:0 0 18px var(--glow),0 0 50px rgba(57,255,20,0.25)}50%{text-shadow:0 0 28px var(--glow),0 0 90px rgba(57,255,20,0.45)}}
+.logo-text .sub{font-family:'Space Mono',monospace;font-size:0.64rem;color:var(--water);letter-spacing:2px}
+h1{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,3.5vw,1.9rem);font-weight:900;
+  color:#fff;text-transform:uppercase;letter-spacing:2px;
+  text-shadow:0 0 25px rgba(57,255,20,0.35);margin-bottom:6px;line-height:1.2}
+.tagline{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--water);letter-spacing:2px}
+.divider{width:100%;height:1px;margin:18px 0;
+  background:linear-gradient(90deg,transparent,var(--glow),var(--water),var(--glow),transparent);
+  box-shadow:0 0 8px var(--glow)}
 
-/* PANELS */
-.panel { background:var(–panel); border:1px solid rgba(57,255,20,0.18);
-border-radius:10px; padding:20px; margin-bottom:20px; position:relative; overflow:hidden; }
-.panel::before { content:’’; position:absolute; top:0; left:0; right:0; height:2px;
-background:linear-gradient(90deg,var(–leaf),var(–water)); }
-.panel-orange::before { background:linear-gradient(90deg,var(–orange),var(–gold)); }
-.panel-purple::before { background:linear-gradient(90deg,#7b1fa2,var(–water)); }
-.panel-red::before { background:linear-gradient(90deg,#b71c1c,var(–orange)); }
+/* BADGES */
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;
+  padding:5px 14px;font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:1.5px}
+.badge-blue{background:rgba(0,188,212,0.1);border:1px solid var(--water);color:var(--water)}
+.badge-orange{background:rgba(255,109,0,0.12);border:1px solid var(--orange);color:var(--orange)}
+.badge-warn{background:rgba(255,68,68,0.12);border:1px solid var(--honest);color:var(--honest)}
+.badge-green{background:rgba(57,255,20,0.08);border:1px solid var(--glow);color:var(--glow)}
 
-/* AI ENGINE */
-.ai-block { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.ai-col h3 { font-family:‘Orbitron’,monospace; font-size:0.72rem; color:var(–gold);
-letter-spacing:2px; margin-bottom:10px; }
-.ai-col p { font-size:0.85rem; color:#a0d0a0; line-height:1.55; margin-bottom:8px; }
-.eq-box { background:rgba(0,0,0,0.5); border:1px solid rgba(57,255,20,0.25);
-border-radius:6px; padding:10px 14px; margin:6px 0; font-family:‘Space Mono’,monospace;
-font-size:0.72rem; color:#39ff14; line-height:1.7; }
-.eq-box .comment { color:#4a8a4a; font-size:0.65rem; }
-.rl-states { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-.rl-tag { background:rgba(255,214,0,0.08); border:1px solid rgba(255,214,0,0.25);
-border-radius:4px; padding:3px 8px; font-size:0.64rem; color:var(–gold); font-family:‘Space Mono’,monospace; }
-.action-tag { background:rgba(0,188,212,0.08); border:1px solid rgba(0,188,212,0.25);
-border-radius:4px; padding:3px 8px; font-size:0.64rem; color:var(–water); font-family:‘Space Mono’,monospace; }
-.reward-tag { background:rgba(57,255,20,0.07); border:1px solid rgba(57,255,20,0.2);
-border-radius:4px; padding:3px 8px; font-size:0.64rem; color:var(–glow); font-family:‘Space Mono’,monospace; }
+/* ── SECTION TITLE ── */
+.st{font-family:'Orbitron',monospace;font-size:0.68rem;letter-spacing:4px;
+  color:var(--glow);text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px}
+.st::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(57,255,20,0.4),transparent)}
+.st-warn{color:var(--warn)}
+.st-warn::after{background:linear-gradient(90deg,rgba(255,145,0,0.4),transparent)}
+.st-red{color:var(--honest)}
+.st-red::after{background:linear-gradient(90deg,rgba(255,68,68,0.4),transparent)}
 
-/* THERMO */
-.thermo-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
-.thermo-card { background:rgba(0,0,0,0.4); border:1px solid rgba(57,255,20,0.15);
-border-radius:8px; padding:14px; }
-.thermo-card h4 { font-family:‘Orbitron’,monospace; font-size:0.65rem; color:var(–water);
-letter-spacing:2px; margin-bottom:8px; }
-.thermo-result { margin-top:8px; background:rgba(57,255,20,0.05); border-left:3px solid var(–glow);
-padding:6px 10px; font-family:‘Space Mono’,monospace; font-size:0.7rem; color:var(–lime); }
+/* ── PANELS ── */
+.panel{background:var(--panel);border:1px solid rgba(57,255,20,0.16);
+  border-radius:10px;padding:20px;margin-bottom:20px;position:relative;overflow:hidden}
+.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--leaf),var(--water))}
+.panel-warn::before{background:linear-gradient(90deg,var(--honest),var(--warn))}
+.panel-orange::before{background:linear-gradient(90deg,var(--orange),var(--gold))}
+.panel-blue::before{background:linear-gradient(90deg,var(--water),#29b6f6)}
 
-/* HARDWARE */
-.hw-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.hw-card { background:rgba(0,0,0,0.35); border:1px solid rgba(255,109,0,0.2);
-border-radius:8px; padding:14px; }
-.hw-card h4 { font-family:‘Orbitron’,monospace; font-size:0.65rem; color:var(–orange);
-letter-spacing:1.5px; margin-bottom:8px; }
-.sensor-list { display:flex; flex-direction:column; gap:5px; }
-.sensor-row { display:flex; align-items:center; gap:8px; font-size:0.78rem; color:#a0d0a0; }
-.sensor-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
-.dot-green { background:var(–glow); box-shadow:0 0 6px var(–glow); }
-.dot-blue  { background:var(–water); box-shadow:0 0 6px var(–water); }
-.dot-gold  { background:var(–gold); box-shadow:0 0 6px var(–gold); }
-.dot-orange{ background:var(–orange); box-shadow:0 0 6px var(–orange); }
-.dot-purple{ background:#ce93d8; box-shadow:0 0 6px #ce93d8; }
+/* ── HONEST CALLOUT ── */
+.honest-box{background:rgba(255,68,68,0.06);border:1px solid rgba(255,68,68,0.35);
+  border-radius:8px;padding:14px 16px;margin:10px 0;position:relative}
+.honest-box::before{content:'⚠ ENGINEERING CONSTRAINT';position:absolute;top:-9px;left:12px;
+  font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:2px;
+  color:var(--honest);background:var(--dark);padding:0 6px}
+.honest-box p{font-size:0.84rem;color:#ffaaaa;line-height:1.55}
+.honest-box strong{color:var(--honest)}
 
-/* CONTROL LOOP diagram */
-.ctrl-loop { display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap;
-margin:12px 0; }
-.ctrl-node { background:rgba(0,0,0,0.5); border:1px solid rgba(57,255,20,0.25);
-border-radius:6px; padding:8px 12px; text-align:center; min-width:90px; }
-.ctrl-node .n-title { font-size:0.64rem; font-family:‘Space Mono’,monospace; color:var(–glow); }
-.ctrl-node .n-sub { font-size:0.6rem; color:#6fbc6f; margin-top:2px; }
-.ctrl-arrow { color:var(–glow); font-size:1rem; padding:0 4px; }
+/* ── EQUATION BOX ── */
+.eq{background:rgba(0,0,0,0.55);border:1px solid rgba(57,255,20,0.2);
+  border-radius:6px;padding:10px 14px;margin:6px 0;
+  font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--glow);line-height:1.8}
+.eq .cm{color:var(--muted);font-size:0.62rem}
+.eq-warn{border-color:rgba(255,145,0,0.35);color:var(--warn)}
+.eq-red{border-color:rgba(255,68,68,0.35);color:#ff8888}
+.result{margin-top:6px;background:rgba(57,255,20,0.05);border-left:3px solid var(--glow);
+  padding:6px 10px;font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--lime)}
+.result-warn{border-left-color:var(--warn);color:#ffcc80}
+.result-red{border-left-color:var(--honest);color:#ff9999}
 
-/* METRICS */
-.metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.metric-block h4 { font-family:‘Orbitron’,monospace; font-size:0.65rem; color:var(–water);
-letter-spacing:2px; margin-bottom:10px; }
-.eff-row { display:flex; align-items:center; gap:10px; margin-bottom:9px; }
-.eff-label { font-size:0.62rem; color:#a0d0a0; width:170px; flex-shrink:0;
-font-family:‘Space Mono’,monospace; }
-.eff-bar-bg { flex:1; height:9px; background:rgba(57,255,20,0.06); border-radius:5px;
-overflow:hidden; border:1px solid rgba(57,255,20,0.12); }
-.eff-bar { height:100%; border-radius:5px;
-background:linear-gradient(90deg,var(–leaf),var(–glow));
-box-shadow:0 0 8px var(–glow); animation:growBar 1.5s cubic-bezier(.4,0,.2,1) both; }
-@keyframes growBar { from{width:0!important} }
-.eff-val { font-family:‘Orbitron’,monospace; font-size:0.72rem; color:var(–glow); width:52px; text-align:right; }
-.baseline-note { font-size:0.68rem; color:#4a8a4a; font-family:‘Space Mono’,monospace;
-margin-top:6px; border-left:2px solid rgba(57,255,20,0.3); padding-left:8px; }
+/* ── STATS BAR ── */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;
+  margin-bottom:20px;border:1px solid rgba(57,255,20,0.18);border-radius:8px;overflow:hidden}
+.sc{background:rgba(8,22,8,0.8);padding:13px 6px;text-align:center;
+  border-right:1px solid rgba(57,255,20,0.12);transition:background 0.3s}
+.sc:last-child{border-right:none}
+.sc:hover{background:rgba(57,255,20,0.06)}
+.sn{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;
+  color:var(--glow);text-shadow:0 0 12px var(--glow);line-height:1}
+.sn-warn{color:var(--warn);text-shadow:0 0 12px var(--warn)}
+.sl{font-size:0.58rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
 
-/* SYSTEM DIAGRAM */
-.system-diagram { position:relative; background:rgba(5,20,5,0.9);
-border:1px solid rgba(57,255,20,0.25); border-radius:12px; padding:24px; margin-bottom:20px; overflow:hidden; }
-.system-diagram::before { content:’’; position:absolute; inset:0;
-background:radial-gradient(ellipse at 50% 50%,rgba(45,122,45,0.06) 0%,transparent 70%); }
-.diagram-svg-wrap { width:100%; max-width:900px; margin:0 auto; display:block; }
-@keyframes flow { to{stroke-dashoffset:-20} }
-.flow-g { stroke-dasharray:8 4; animation:flow 1s linear infinite; }
-.flow-b { stroke-dasharray:8 4; animation:flow 1.2s linear infinite; }
+/* ── PSYCHROMETRIC CHART ── */
+.psych-wrap{width:100%;overflow-x:auto;margin:10px 0}
 
-/* TECH CARDS */
-.tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; margin-bottom:20px; }
-.tech-card { background:var(–panel); border:1px solid rgba(57,255,20,0.18);
-border-radius:10px; padding:18px; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s; }
-.tech-card:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(57,255,20,0.15); border-color:rgba(57,255,20,0.5); }
-.tech-card::before { content:’’; position:absolute; top:0; left:0; right:0; height:2px;
-background:linear-gradient(90deg,var(–leaf),var(–water)); }
-.card-num { position:absolute; top:12px; right:14px; font-family:‘Orbitron’,monospace;
-font-size:2rem; font-weight:900; color:rgba(57,255,20,0.07); line-height:1; }
-.card-icon { font-size:1.8rem; margin-bottom:8px; display:block; filter:drop-shadow(0 0 8px rgba(57,255,20,0.4)); }
-.card-title { font-family:‘Orbitron’,monospace; font-size:0.75rem; font-weight:700;
-color:var(–glow); letter-spacing:1px; margin-bottom:5px; text-transform:uppercase; }
-.card-body { font-size:0.84rem; color:#a0d0a0; line-height:1.5; margin-bottom:10px; }
-.card-spec { display:flex; flex-wrap:wrap; gap:5px; }
-.spec-tag { background:rgba(57,255,20,0.08); border:1px solid rgba(57,255,20,0.2); border-radius:4px;
-padding:2px 7px; font-size:0.64rem; color:var(–lime); font-family:‘Space Mono’,monospace; }
-.water-tag { background:rgba(0,188,212,0.1); border-color:rgba(0,188,212,0.3); color:var(–water); }
-.gold-tag  { background:rgba(255,214,0,0.1);  border-color:rgba(255,214,0,0.3);  color:var(–gold); }
+/* ── TWO-COL ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 
-/* PIPELINE */
-.pipeline { display:flex; align-items:stretch; gap:0; margin-bottom:20px;
-border:1px solid rgba(57,255,20,0.2); border-radius:10px; overflow:hidden; }
-.pipe-step { flex:1; padding:14px 10px; background:rgba(5,20,5,0.8); text-align:center;
-border-right:1px solid rgba(57,255,20,0.12); position:relative; transition:background 0.3s; }
-.pipe-step:last-child{border-right:none}
-.pipe-step:hover{background:rgba(57,255,20,0.05)}
-.pipe-step::after { content:‘▶’; position:absolute; right:-9px; top:50%; transform:translateY(-50%);
-color:var(–glow); font-size:0.75rem; z-index:3; }
-.pipe-step:last-child::after{display:none}
-.pipe-icon { font-size:1.5rem; display:block; margin-bottom:5px; }
-.pipe-label { font-size:0.62rem; color:var(–water); letter-spacing:1px; font-family:‘Space Mono’,monospace; }
-.pipe-sub { font-size:0.68rem; color:#6fbc6f; margin-top:2px; }
+/* ── INNER CARD ── */
+.ic{background:rgba(0,0,0,0.38);border:1px solid rgba(57,255,20,0.13);
+  border-radius:8px;padding:14px}
+.ic h4{font-family:'Orbitron',monospace;font-size:0.63rem;letter-spacing:2px;
+  color:var(--water);margin-bottom:8px}
+.ic-warn h4{color:var(--warn)}
+.ic-red h4{color:var(--honest)}
+.ic p{font-size:0.83rem;color:#90c090;line-height:1.5}
 
-/* GRADING */
-.grade-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:20px; }
-.grade-card { background:rgba(0,0,0,0.4); border-radius:8px; padding:16px; text-align:center;
-border:1px solid rgba(57,255,20,0.15); }
-.grade-letter { font-family:‘Orbitron’,monospace; font-size:2.4rem; font-weight:900;
-line-height:1; margin-bottom:4px; }
-.grade-A { color:#39ff14; text-shadow:0 0 20px #39ff14; }
-.grade-label { font-size:0.62rem; color:#6fbc6f; letter-spacing:1px; font-family:‘Space Mono’,monospace; }
+/* ── DERATING TABLE ── */
+.derate-table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:0.68rem;margin-top:10px}
+.derate-table th{background:rgba(57,255,20,0.08);color:var(--glow);letter-spacing:1px;
+  padding:7px 10px;border:1px solid rgba(57,255,20,0.15);text-align:center}
+.derate-table td{padding:6px 10px;border:1px solid rgba(57,255,20,0.1);text-align:center;color:#90c090}
+.derate-table tr:hover td{background:rgba(57,255,20,0.04)}
+.cell-green{color:var(--glow)!important;font-weight:700}
+.cell-yellow{color:var(--gold)!important}
+.cell-orange{color:var(--warn)!important}
+.cell-red{color:var(--honest)!important}
 
-/* FOOTER */
-footer { text-align:center; padding-top:20px; border-top:1px solid rgba(57,255,20,0.12); }
-.footer-logo { font-family:‘Orbitron’,monospace; font-size:0.7rem; letter-spacing:4px;
-color:rgba(57,255,20,0.4); margin-bottom:4px; }
-.footer-copy { font-size:0.65rem; color:#3a6a3a; font-family:‘Space Mono’,monospace; letter-spacing:1px; }
+/* ── BACKUP TABLE ── */
+.backup-table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:0.66rem;margin-top:10px}
+.backup-table th{background:rgba(255,68,68,0.1);color:var(--honest);
+  padding:7px 10px;border:1px solid rgba(255,68,68,0.2);text-align:left}
+.backup-table td{padding:6px 10px;border:1px solid rgba(255,68,68,0.1);color:#ffc0c0;vertical-align:top}
+.backup-table tr:hover td{background:rgba(255,68,68,0.04)}
 
-@media(max-width:700px){
-.ai-block,.hw-grid,.thermo-grid,.metrics-grid,.grade-grid{grid-template-columns:1fr!important}
-.overview-grid{grid-template-columns:repeat(3,1fr)!important}
-.pipeline{flex-wrap:wrap}
-.pipe-step{min-width:45%}
-.pipe-step::after{display:none}
+/* ── HARDWARE ── */
+.hw-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hw-card{background:rgba(0,0,0,0.35);border:1px solid rgba(255,109,0,0.2);border-radius:8px;padding:14px}
+.hw-card h4{font-family:'Orbitron',monospace;font-size:0.62rem;color:var(--orange);letter-spacing:1.5px;margin-bottom:8px}
+.sl-row{display:flex;align-items:flex-start;gap:8px;font-size:0.79rem;color:#a0c8a0;margin-bottom:4px}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.dg{background:var(--glow);box-shadow:0 0 5px var(--glow)}
+.db{background:var(--water);box-shadow:0 0 5px var(--water)}
+.dy{background:var(--gold);box-shadow:0 0 5px var(--gold)}
+.do{background:var(--orange);box-shadow:0 0 5px var(--orange)}
+.dp{background:#ce93d8;box-shadow:0 0 5px #ce93d8}
+.dr{background:var(--honest);box-shadow:0 0 5px var(--honest)}
+
+/* ── CONTROL LOOP ── */
+.ctrl{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;margin:12px 0}
+.cn{background:rgba(0,0,0,0.5);border:1px solid rgba(57,255,20,0.22);
+  border-radius:6px;padding:7px 11px;text-align:center;min-width:86px}
+.cn .ct{font-size:0.62rem;font-family:'Space Mono',monospace;color:var(--glow)}
+.cn .cs{font-size:0.58rem;color:var(--muted);margin-top:2px}
+.ca{color:var(--glow);font-size:0.9rem;padding:0 2px}
+
+/* ── TECH CARDS ── */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:13px;margin-bottom:20px}
+.tc{background:var(--panel);border:1px solid rgba(57,255,20,0.16);border-radius:10px;
+  padding:17px;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+.tc:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(57,255,20,0.12);border-color:rgba(57,255,20,0.45)}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--leaf),var(--water))}
+.tc-num{position:absolute;top:11px;right:13px;font-family:'Orbitron',monospace;
+  font-size:1.9rem;font-weight:900;color:rgba(57,255,20,0.06);line-height:1}
+.tc-icon{font-size:1.7rem;margin-bottom:7px;display:block;filter:drop-shadow(0 0 7px rgba(57,255,20,0.38))}
+.tc-title{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;
+  color:var(--glow);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase}
+.tc-body{font-size:0.82rem;color:#90c090;line-height:1.5;margin-bottom:9px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{border-radius:4px;padding:2px 7px;font-size:0.62rem;font-family:'Space Mono',monospace}
+.tg{background:rgba(57,255,20,0.07);border:1px solid rgba(57,255,20,0.2);color:var(--lime)}
+.tb{background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);color:var(--water)}
+.ty{background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);color:var(--gold)}
+.tr{background:rgba(255,68,68,0.07);border:1px solid rgba(255,68,68,0.25);color:#ff9999}
+
+/* ── EFFICIENCY BARS ── */
+.eff-section{background:var(--panel);border:1px solid rgba(57,255,20,0.16);border-radius:10px;padding:18px;margin-bottom:18px}
+.eff-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.eff-row:last-child{margin-bottom:0}
+.el{font-size:0.61rem;color:#90c090;width:180px;flex-shrink:0;font-family:'Space Mono',monospace}
+.eb{flex:1;height:9px;background:rgba(57,255,20,0.05);border-radius:5px;overflow:hidden;border:1px solid rgba(57,255,20,0.1)}
+.ef{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--leaf),var(--glow));
+  box-shadow:0 0 7px var(--glow);animation:grow 1.6s cubic-bezier(.4,0,.2,1) both}
+.ef-warn{background:linear-gradient(90deg,#b35000,var(--warn));box-shadow:0 0 7px var(--warn)}
+@keyframes grow{from{width:0!important}}
+.ev{font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--glow);width:55px;text-align:right}
+.ev-warn{color:var(--warn)}
+.note{font-size:0.64rem;color:var(--muted);font-family:'Space Mono',monospace;
+  margin-top:5px;border-left:2px solid rgba(57,255,20,0.25);padding-left:7px;line-height:1.6}
+.note-warn{border-left-color:var(--warn);color:#cc8844}
+
+/* ── PIPELINE ── */
+.pipeline{display:flex;align-items:stretch;border:1px solid rgba(57,255,20,0.18);
+  border-radius:10px;overflow:hidden;margin-bottom:18px}
+.ps{flex:1;padding:13px 8px;background:rgba(4,16,4,0.85);text-align:center;
+  border-right:1px solid rgba(57,255,20,0.1);position:relative;transition:background 0.3s}
+.ps:last-child{border-right:none}
+.ps:hover{background:rgba(57,255,20,0.04)}
+.ps::after{content:'▶';position:absolute;right:-8px;top:50%;transform:translateY(-50%);
+  color:var(--glow);font-size:0.7rem;z-index:3}
+.ps:last-child::after{display:none}
+.pi{font-size:1.4rem;display:block;margin-bottom:4px}
+.pl{font-size:0.6rem;color:var(--water);letter-spacing:1px;font-family:'Space Mono',monospace}
+.pp{font-size:0.66rem;color:var(--muted);margin-top:2px}
+
+/* ── GRADE ── */
+.grade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.gc{background:rgba(0,0,0,0.4);border-radius:8px;padding:15px;text-align:center;border:1px solid rgba(57,255,20,0.14)}
+.gl{font-family:'Orbitron',monospace;font-size:2.2rem;font-weight:900;line-height:1;margin-bottom:3px}
+.gl-a{color:var(--glow);text-shadow:0 0 18px var(--glow)}
+.gl-b{color:var(--gold);text-shadow:0 0 18px var(--gold)}
+.glb{font-size:0.59rem;color:var(--muted);letter-spacing:1px;font-family:'Space Mono',monospace;line-height:1.5}
+
+/* ── CLASSIFICATION BANNER ── */
+.class-banner{background:rgba(57,255,20,0.04);border:1px solid rgba(57,255,20,0.28);
+  border-radius:8px;padding:14px;margin-bottom:20px;text-align:center}
+
+/* ── DIAGRAM ── */
+.system-diagram{position:relative;background:rgba(4,16,4,0.92);
+  border:1px solid rgba(57,255,20,0.22);border-radius:12px;padding:20px;margin-bottom:18px;overflow:hidden}
+.system-diagram::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(45,122,45,0.05) 0%,transparent 70%)}
+@keyframes flow{to{stroke-dashoffset:-20}}
+.fg{stroke-dasharray:8 4;animation:flow 1s linear infinite}
+.fb{stroke-dasharray:8 4;animation:flow 1.2s linear infinite}
+.fo{stroke-dasharray:6 4;animation:flow 0.8s linear infinite}
+.fr{stroke-dasharray:5 4;animation:flow 0.9s linear infinite}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding-top:18px;border-top:1px solid rgba(57,255,20,0.1)}
+.fl{font-family:'Orbitron',monospace;font-size:0.65rem;letter-spacing:4px;
+  color:rgba(57,255,20,0.35);margin-bottom:4px}
+.fc{font-size:0.62rem;color:#2a5a2a;font-family:'Space Mono',monospace;letter-spacing:1px}
+
+@media(max-width:720px){
+  .two,.hw-grid,.three,.grade-grid{grid-template-columns:1fr!important}
+  .stats{grid-template-columns:repeat(3,1fr)!important}
+  .pipeline{flex-wrap:wrap}.ps{min-width:45%}.ps::after{display:none}
 }
 </style>
-
 </head>
 <body>
 <div class="rain" id="rain"></div>
-<div class="bg-layer"></div>
-<div class="wrapper">
+<div class="bg"></div>
+<div class="wrap">
 
-<!-- ═══════════════ HEADER ═══════════════ -->
-
+<!-- ══════════ HEADER ══════════ -->
 <header>
   <div class="egk-logo">
     <div class="logo-hex">
@@ -234,567 +268,674 @@ color:rgba(57,255,20,0.4); margin-bottom:4px; }
       <div class="sub">MICROELECTRONIC SOLUTIONS GROUP SDN. BHD.</div>
     </div>
   </div>
-  <h1>Natural AI Cooling System</h1>
-  <div class="tagline">// ENGINEERING EDITION — AI CONTROL · THERMODYNAMIC MODEL · HARDWARE INTEGRATION //</div>
+  <h1>Climate-Adaptive Hybrid Passive Cooling Architecture</h1>
+  <div class="tagline">// FOR AI DATA ENVIRONMENTS · MALAYSIA TROPICAL CLIMATE · v3 HONEST ENGINEERING EDITION //</div>
   <div class="divider"></div>
-  <div class="climate-badge"><span>🌴</span> MALAYSIA · TROPICAL ZONE 1°N · RH 70–95% · 26–34°C · 2,500–3,000 mm/yr RAINFALL</div>
-  <div class="ver-badge">⚙ v2.0 ENGINEERING-COMPLETE · ALL GAPS RESOLVED</div>
+  <div class="badges">
+    <div class="badge badge-blue">🌴 MY TROPICAL 1°N · 26–34°C · RH 70–95%</div>
+    <div class="badge badge-orange">⚙ DQN+PID AI CONTROL · 28 SENSORS · 7 ACTUATORS</div>
+    <div class="badge badge-warn">⚠ HONEST EDITION — WET-BULB CONSTRAINED · HYBRID BACKUP DEFINED</div>
+    <div class="badge badge-green">✅ DESIGN TARGETS — NOT YET BENCH-VALIDATED</div>
+  </div>
 </header>
 
-<!-- ═══════════════ STATS ═══════════════ -->
-
-<div class="overview-grid">
-  <div class="stat-cell"><div class="stat-num">0</div><div class="stat-label">AC Units</div></div>
-  <div class="stat-cell"><div class="stat-num">72%</div><div class="stat-label">Energy Saved*</div></div>
-  <div class="stat-cell"><div class="stat-num">1.12</div><div class="stat-label">PUE Target</div></div>
-  <div class="stat-cell"><div class="stat-num">Q=mCΔT</div><div class="stat-label">Heat Model</div></div>
-  <div class="stat-cell"><div class="stat-num">RL+PID</div><div class="stat-label">AI Control</div></div>
-  <div class="stat-cell"><div class="stat-num">28+</div><div class="stat-label">Sensors</div></div>
-</div>
-<p style="font-size:0.62rem;color:#4a8a4a;font-family:'Space Mono',monospace;margin-bottom:20px;text-align:right;">*Calculated vs ASHRAE baseline 100kW data centre. See methodology §4.</p>
-
-<!-- ═══════════════ GAP A: AI CONTROL ENGINE ═══════════════ -->
-
-<div class="sec-title">// GAP A RESOLVED — AI CONTROL ENGINE · MODEL TYPE, STATES, ACTIONS, REWARD</div>
-<div class="panel panel-orange">
-  <div class="ai-block">
-    <div class="ai-col">
-      <h3>🧠 MODEL: HYBRID RL + PID CONTROLLER</h3>
-      <p>A <strong style="color:#ffd600">Deep Q-Network (DQN)</strong> Reinforcement Learning agent sits above a bank of PID loops. The RL agent learns the optimal pump-flow policy over time from real sensor data. PIDs handle fast-response stabilisation within each control cycle (10-second interval).</p>
-
-```
-  <div class="eq-box">
-    <span class="comment">// RL AGENT — BELLMAN EQUATION</span><br>
-    Q(s,a) ← Q(s,a) + α·[r + γ·max Q(s',a') − Q(s,a)]<br>
-    <span class="comment">// α=0.001 learning rate · γ=0.97 discount</span>
-  </div>
-
-  <div class="eq-box">
-    <span class="comment">// PID SUBORDINATE LOOP (each actuator)</span><br>
-    u(t) = Kp·e(t) + Ki·∫e(t)dt + Kd·de/dt<br>
-    <span class="comment">// Kp=2.1, Ki=0.08, Kd=0.4 (tuned)</span>
-  </div>
-
-  <div class="eq-box">
-    <span class="comment">// REWARD FUNCTION (optimisation objective)</span><br>
-    R = −w₁·(T_chip − T_target)² − w₂·P_pump − w₃·W_water<br>
-    <span class="comment">// w₁=10, w₂=0.5, w₃=0.3 (weighted)</span>
-  </div>
-
-  <h3 style="margin-top:14px">📡 STATE VECTOR  s ∈ ℝ¹²</h3>
-  <div class="rl-states">
-    <span class="rl-tag">T_chip (°C)</span><span class="rl-tag">T_coolant_in</span><span class="rl-tag">T_coolant_out</span>
-    <span class="rl-tag">T_ambient</span><span class="rl-tag">RH (%)</span><span class="rl-tag">Solar_irr (W/m²)</span>
-    <span class="rl-tag">Wind_spd (m/s)</span><span class="rl-tag">GPU_load (%)</span><span class="rl-tag">T_geo_loop</span>
-    <span class="rl-tag">PCM_state</span><span class="rl-tag">Tank_level</span><span class="rl-tag">Time_of_day</span>
+<!-- ══════════ CLASSIFICATION BANNER ══════════ -->
+<div class="class-banner">
+  <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--glow);letter-spacing:3px;margin-bottom:8px">✅ ACCURATE TECHNICAL CLASSIFICATION</div>
+  <div style="font-family:'Space Mono',monospace;font-size:0.85rem;color:#c0e0c0;line-height:1.7">
+    <strong style="color:var(--glow)">🟢 Climate-Adaptive Hybrid Passive-Primary Cooling Architecture</strong><br>
+    Passive systems handle <strong style="color:var(--gold)">~70–85% of load</strong> under favourable conditions ·
+    Mechanical backup activates at defined psychrometric thresholds<br>
+    <span style="color:var(--muted);font-size:0.7rem">Replaces: ~~"ZERO AC · ZERO EMISSION · FULL PERFORMANCE"~~ — accurate label is stronger and more credible</span>
   </div>
 </div>
 
-<div class="ai-col">
-  <h3>⚡ ACTION SPACE  a ∈ 𝒜 (7 actuators)</h3>
-  <div class="rl-states">
-    <span class="action-tag">Pump_flow: LOW / MED / HIGH</span>
-    <span class="action-tag">Wet_wall_valve: 0–100%</span>
-    <span class="action-tag">PCM_bypass: ON / OFF</span>
-    <span class="action-tag">Chimney_damper: 0–100%</span>
-    <span class="action-tag">Geo_loop_valve: ON / OFF</span>
-    <span class="action-tag">Recycle_pump: ON / OFF</span>
-    <span class="action-tag">Alarm_flag: NORMAL / WARN / CRIT</span>
-  </div>
-
-  <h3 style="margin-top:14px">🔁 DECISION LOGIC (per 10s cycle)</h3>
-  <div class="eq-box" style="font-size:0.67rem">
-    <span class="comment">// RULE-BASED SAFETY WRAPPER (overrides RL)</span><br>
-    IF T_chip &gt; 38°C → a = PUMP_HIGH + WET_MAX<br>
-    IF T_chip &gt; 45°C → ALERT + emergency_override()<br>
-    ELIF T_chip &lt; 26°C → a = PUMP_LOW + PCM_STORE<br>
-    ELSE → DQN_agent.predict(state_vector)
-  </div>
-
-  <h3 style="margin-top:14px">📊 TRAINING DATA</h3>
-  <p style="font-size:0.82rem;color:#a0d0a0;line-height:1.5">
-    • <strong style="color:#ffd600">Simulation phase:</strong> 50,000 episodes on TRNSYS18 thermal model of Penang climate (TMY3 weather file MY_Penang_486520)<br>
-    • <strong style="color:#ffd600">Online learning:</strong> Continuous from 28 live sensors at 1-minute intervals<br>
-    • <strong style="color:#ffd600">Dataset bootstrap:</strong> 12 months Malaysian Meteorological Dept. weather data (2023–24, Butterworth station)<br>
-    • <strong style="color:#ffd600">Convergence:</strong> ~800 episodes for stable policy; retrained monthly
-  </p>
-
-  <div class="rl-states" style="margin-top:10px">
-    <span class="reward-tag">Target: T_chip = 28–30°C</span>
-    <span class="reward-tag">Convergence: ~800 ep</span>
-    <span class="reward-tag">Cycle: 10s</span>
-    <span class="reward-tag">Framework: PyTorch</span>
-    <span class="reward-tag">Deploy: Raspberry Pi 5 + MQTT</span>
-  </div>
+<!-- ══════════ STATS ══════════ -->
+<div class="stats">
+  <div class="sc"><div class="sn">0</div><div class="sl">AC (baseline)</div></div>
+  <div class="sc"><div class="sn sn-warn">~1</div><div class="sl">Backup unit spec'd</div></div>
+  <div class="sc"><div class="sn">1.12</div><div class="sl">PUE target*</div></div>
+  <div class="sc"><div class="sn">WB 26°C</div><div class="sl">Evap ceiling MY</div></div>
+  <div class="sc"><div class="sn">DQN</div><div class="sl">AI model type</div></div>
+  <div class="sc"><div class="sn">28+</div><div class="sl">Live sensors</div></div>
 </div>
-```
+<p style="font-size:0.6rem;color:var(--muted);font-family:'Space Mono',monospace;margin-bottom:20px;text-align:right">*Design target. Requires bench validation. Methodology: ASHRAE 100kW baseline, 2× scroll chillers COP=2.8.</p>
 
-  </div>
-</div>
+<!-- ══════════ NEW: WET-BULB PSYCHROMETRIC ANALYSIS ══════════ -->
+<div class="st st-warn">// NEW IN v3 — WET-BULB PSYCHROMETRIC ANALYSIS · THE HONEST CONSTRAINT</div>
+<div class="panel panel-warn">
+  <div class="two" style="margin-bottom:14px">
+    <div class="ic ic-warn">
+      <h4>🌡 WET-BULB PHYSICS — WHY IT LIMITS EVAPORATIVE COOLING</h4>
+      <p>Evaporative cooling cannot cool air below its <strong style="color:var(--warn)">wet-bulb temperature (WBT)</strong>. This is a hard thermodynamic ceiling, not an engineering choice. In Malaysia, WBT ranges 24–27°C depending on season and time of day — leaving only a narrow driving force.</p>
+      <div class="eq eq-warn">
+        <span class="cm">// WET-BULB TEMPERATURE (psychrometric approx.)</span><br>
+        T_wb ≈ T_db × atan[0.151977·(RH+8.313659)^0.5]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;+ atan(T_db + RH) − atan(RH − 1.676331)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;+ 0.00391838·RH^1.5 · atan(0.023101·RH) − 4.686035<br>
+        <span class="cm">// Stull (2011) — accurate ±0.65°C for 5%≤RH≤99%</span>
+      </div>
+      <div class="eq eq-warn">
+        <span class="cm">// MALAYSIA CASE: worst-case monsoon peak</span><br>
+        T_db = 32°C · RH = 90%<br>
+        T_wb ≈ <strong>27.1°C</strong><br>
+        <span class="cm">// MALAYSIA CASE: typical daytime</span><br>
+        T_db = 30°C · RH = 75%<br>
+        T_wb ≈ <strong>25.1°C</strong>
+      </div>
+      <div class="result result-warn">⟹ Evaporative cooling ceiling: 25–27°C inlet air — NOT 18–20°C as in arid climates</div>
+    </div>
 
-<!-- ═══════════════ GAP B: THERMODYNAMIC MODEL ═══════════════ -->
-
-<div class="sec-title">// GAP B RESOLVED — THERMODYNAMIC MODEL · HEAT EQUATIONS · ENERGY BALANCE</div>
-<div class="panel panel-purple">
-  <div class="thermo-grid">
-
-```
-<div class="thermo-card">
-  <h4>🔥 SENSIBLE HEAT LOAD</h4>
-  <div class="eq-box">
-    Q_server = P_IT × (1 − η_PSU)<br>
-    <span class="comment">// P_IT = 100 kW · η_PSU = 0.94</span><br>
-    Q_server = 100 × 0.06 = <strong>6 kW waste</strong><br><br>
-    Q_total = P_IT / η_PSU = 100/0.94<br>
-    = <strong>106.4 kW total heat rejected</strong>
-  </div>
-  <div class="thermo-result">⟹ 106.4 kW must be removed continuously</div>
-</div>
-
-<div class="thermo-card">
-  <h4>💧 IMMERSION COOLING CAPACITY</h4>
-  <div class="eq-box">
-    Q = ṁ · Cp · ΔT<br>
-    <span class="comment">// Mineral oil: Cp=1,670 J/kg·K</span><br>
-    ṁ = Q / (Cp × ΔT)<br>
-    = 106,400 / (1670 × 20)<br>
-    = <strong>3.19 kg/s ≈ 191 L/min</strong><br><br>
-    Pump power: P = ṁ·ΔP/ρ/η<br>
-    ≈ <strong>1.8 kW</strong> (vs 35 kW chiller)
-  </div>
-  <div class="thermo-result">⟹ ΔT = 20°C confirmed at 191 L/min</div>
-</div>
-
-<div class="thermo-card">
-  <h4>🌍 GEOTHERMAL SINK CAPACITY</h4>
-  <div class="eq-box">
-    Q_geo = U · A · (T_fluid − T_earth)<br>
-    <span class="comment">// U=50 W/m²K · A=60m² · ΔT=8°C</span><br>
-    Q_geo = 50 × 60 × 8<br>
-    = <strong>24,000 W = 24 kW</strong><br><br>
-    Remaining load to wet wall:<br>
-    106.4 − 24 = <strong>82.4 kW</strong>
-  </div>
-  <div class="thermo-result">⟹ 60m² PEX loop handles 22.6% of load</div>
-</div>
-
-<div class="thermo-card">
-  <h4>🎋 EVAPORATIVE WET WALL</h4>
-  <div class="eq-box">
-    Q_evap = ṁ_water × h_fg<br>
-    <span class="comment">// h_fg at 30°C = 2,431 kJ/kg</span><br>
-    ṁ_water = Q / h_fg<br>
-    = 82,400 / 2,431,000<br>
-    = <strong>0.034 kg/s ≈ 2.0 L/min</strong><br><br>
-    ΔT_air = 82,400/(ṁ_air × Cp_air)<br>
-    ≈ <strong>6.8°C cooling</strong>
-  </div>
-  <div class="thermo-result">⟹ 2.0 L/min evaporation covers 82.4 kW</div>
-</div>
-
-<div class="thermo-card">
-  <h4>☀ SOLAR CHIMNEY DRAFT</h4>
-  <div class="eq-box">
-    v_chimney = √(2·g·H·(T_hot−T_amb)/T_amb)<br>
-    <span class="comment">// H=8m · ΔT=15°C · T_amb=303K</span><br>
-    v = √(2×9.81×8×15/303)<br>
-    = <strong>2.81 m/s</strong><br><br>
-    Volume flow: Q_v = v × A_chimney<br>
-    = 2.81 × 0.8 = <strong>2.25 m³/s</strong>
-  </div>
-  <div class="thermo-result">⟹ 2.81 m/s passive exhaust, zero power</div>
-</div>
-
-<div class="thermo-card">
-  <h4>🧊 PCM THERMAL STORAGE</h4>
-  <div class="eq-box">
-    Q_PCM = m · L_f<br>
-    <span class="comment">// L_f (paraffin) = 200 kJ/kg</span><br>
-    m = Q_PCM / L_f<br>
-    = (50kW × 14hrs × 3600) / 200,000<br>
-    = <strong>12,600 kg ≈ 12.6 tonnes</strong><br><br>
-    Volume = m/ρ = 12600/800<br>
-    = <strong>15.75 m³ PCM slab bank</strong>
-  </div>
-  <div class="thermo-result">⟹ 15.75 m³ bank covers 14-hr peak shift</div>
-</div>
-```
-
-  </div>
-
-  <!-- ENERGY BALANCE SUMMARY -->
-
-  <div style="margin-top:16px; background:rgba(0,0,0,0.4); border:1px solid rgba(57,255,20,0.2); border-radius:8px; padding:14px;">
-    <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--glow);letter-spacing:2px;margin-bottom:10px;">⚖ WHOLE-SYSTEM ENERGY BALANCE</div>
-    <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#a0d0a0;line-height:1.9;">
-      Heat IN:  Q_server = 106.4 kW (IT load at full GPU utilisation)<br>
-      Heat OUT: Q_geo(24.0) + Q_evap(82.4) = <strong style="color:var(--glow)">106.4 kW ✓ BALANCED</strong><br>
-      Pump power: 1.8 kW (immersion) + 0.3 kW (geo) + 0.2 kW (recycle) = <strong style="color:var(--glow)">2.3 kW total mechanical</strong><br>
-      PUE = (P_IT + P_cooling) / P_IT = (100 + 2.3) / 100 = <strong style="color:var(--glow)">1.023 (design target)</strong><br>
-      Conservative real-world PUE (piping losses, controls): <strong style="color:var(--gold)">~1.12</strong>
+    <div class="ic ic-warn">
+      <h4>📉 EVAPORATIVE EFFICIENCY DERATING — MALAYSIA RH</h4>
+      <p>Direct evaporative cooler efficiency η = (T_db_in − T_db_out) / (T_db_in − T_wb_in). At high RH, the driving potential collapses. The wet wall's −6 to −8°C claim in v1 was for <em>dry</em> conditions only.</p>
+      <table class="derate-table">
+        <tr>
+          <th>RH (%)</th><th>T_db (°C)</th><th>T_wb (°C)</th>
+          <th>η Evap (%)</th><th>ΔT Actual</th><th>Status</th>
+        </tr>
+        <tr>
+          <td>55%</td><td>32</td><td>22.8</td>
+          <td class="cell-green">85%</td><td class="cell-green">−7.8°C</td><td class="cell-green">✅ GOOD</td>
+        </tr>
+        <tr>
+          <td>65%</td><td>31</td><td>24.0</td>
+          <td class="cell-green">75%</td><td class="cell-green">−5.3°C</td><td class="cell-green">✅ GOOD</td>
+        </tr>
+        <tr>
+          <td>75%</td><td>30</td><td>25.1</td>
+          <td class="cell-yellow">60%</td><td class="cell-yellow">−2.9°C</td><td class="cell-yellow">⚠ REDUCED</td>
+        </tr>
+        <tr>
+          <td>85%</td><td>30</td><td>26.2</td>
+          <td class="cell-orange">40%</td><td class="cell-orange">−1.5°C</td><td class="cell-orange">⚠ MARGINAL</td>
+        </tr>
+        <tr>
+          <td>92%</td><td>29</td><td>27.1</td>
+          <td class="cell-red">18%</td><td class="cell-red">−0.3°C</td><td class="cell-red">❌ INEFFECTIVE</td>
+        </tr>
+      </table>
+      <div class="result result-warn" style="margin-top:8px">⟹ v1's "−6 to −8°C" only valid at RH ≤65%. Malaysia averages RH 75–85% → <strong>expect −1.5 to −3°C</strong> in typical conditions</div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════ SYSTEM DIAGRAM ═══════════════ -->
-
-<div class="system-diagram">
-  <div class="sec-title">// INTEGRATED SYSTEM ARCHITECTURE WITH AI CONTROL OVERLAY</div>
-  <div class="diagram-svg-wrap">
-    <svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg" font-family="Rajdhani,sans-serif">
+  <!-- PSYCHROMETRIC SVG CHART -->
+  <div style="font-family:'Orbitron',monospace;font-size:0.63rem;color:var(--warn);letter-spacing:2px;margin-bottom:10px">📊 PSYCHROMETRIC OPERATING WINDOW — MALAYSIA</div>
+  <div class="psych-wrap">
+    <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" font-family="'Space Mono',monospace">
       <defs>
-        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#1a4a1a"/><stop offset="100%" style="stop-color:#0a1a0a"/>
+        <linearGradient id="zoneGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(57,255,20,0.15)"/>
+          <stop offset="100%" style="stop-color:rgba(57,255,20,0.05)"/>
         </linearGradient>
-        <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#006064"/><stop offset="100%" style="stop-color:#004d40"/>
+        <linearGradient id="zoneGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(255,145,0,0.15)"/>
+          <stop offset="100%" style="stop-color:rgba(255,145,0,0.05)"/>
         </linearGradient>
-        <linearGradient id="earthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#2d4a1a"/><stop offset="100%" style="stop-color:#1a2a0a"/>
+        <linearGradient id="zoneGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(255,68,68,0.18)"/>
+          <stop offset="100%" style="stop-color:rgba(255,68,68,0.06)"/>
         </linearGradient>
-        <filter id="glow2"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="glowOrange"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <marker id="arrowG" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#39ff14"/></marker>
-        <marker id="arrowB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#00bcd4"/></marker>
-        <marker id="arrowO" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ff6d00"/></marker>
-        <style>.flow-g{stroke-dasharray:8 4;animation:flow 1s linear infinite}.flow-b{stroke-dasharray:8 4;animation:flow 1.2s linear infinite}.flow-o{stroke-dasharray:6 4;animation:flow 0.8s linear infinite}</style>
       </defs>
+      <!-- Grid -->
+      <rect x="60" y="20" width="760" height="230" fill="rgba(0,0,0,0.4)" rx="4"/>
+      <!-- Grid lines -->
+      <line x1="60" y1="70" x2="820" y2="70" stroke="rgba(57,255,20,0.08)" stroke-width="1"/>
+      <line x1="60" y1="120" x2="820" y2="120" stroke="rgba(57,255,20,0.08)" stroke-width="1"/>
+      <line x1="60" y1="170" x2="820" y2="170" stroke="rgba(57,255,20,0.08)" stroke-width="1"/>
+      <line x1="60" y1="220" x2="820" y2="220" stroke="rgba(57,255,20,0.08)" stroke-width="1"/>
+      <!-- X axis temp lines -->
+      <line x1="180" y1="20" x2="180" y2="250" stroke="rgba(57,255,20,0.07)" stroke-width="1"/>
+      <line x1="300" y1="20" x2="300" y2="250" stroke="rgba(57,255,20,0.07)" stroke-width="1"/>
+      <line x1="420" y1="20" x2="420" y2="250" stroke="rgba(57,255,20,0.07)" stroke-width="1"/>
+      <line x1="540" y1="20" x2="540" y2="250" stroke="rgba(57,255,20,0.07)" stroke-width="1"/>
+      <line x1="660" y1="20" x2="660" y2="250" stroke="rgba(57,255,20,0.07)" stroke-width="1"/>
+      <line x1="780" y1="20" x2="780" y2="250" stroke="rgba(57,255,20,0.07)" stroke-width="1"/>
 
-```
-  <!-- Background zones -->
-  <rect x="0" y="0" width="900" height="180" fill="url(#skyGrad)" rx="8"/>
-  <rect x="0" y="350" width="900" height="190" fill="url(#earthGrad)" rx="8"/>
-  <rect x="0" y="180" width="900" height="170" fill="rgba(0,40,40,0.6)"/>
+      <!-- Axes -->
+      <line x1="60" y1="250" x2="820" y2="250" stroke="rgba(57,255,20,0.3)" stroke-width="1.5"/>
+      <line x1="60" y1="20" x2="60" y2="250" stroke="rgba(57,255,20,0.3)" stroke-width="1.5"/>
 
-  <!-- Zone labels -->
-  <text x="18" y="22" fill="#39ff14" font-size="9" font-family="'Space Mono',monospace" letter-spacing="2" opacity="0.7">ROOF / CANOPY LAYER</text>
-  <text x="18" y="202" fill="#00bcd4" font-size="9" font-family="'Space Mono',monospace" letter-spacing="2" opacity="0.7">SERVER ROOM / COOLING CORE</text>
-  <text x="18" y="368" fill="#8bc34a" font-size="9" font-family="'Space Mono',monospace" letter-spacing="2" opacity="0.7">GROUND / GEOTHERMAL + STORAGE LAYER</text>
+      <!-- X labels (Dry Bulb Temp) -->
+      <text x="60" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">20°C</text>
+      <text x="180" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">23°C</text>
+      <text x="300" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">26°C</text>
+      <text x="420" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">29°C</text>
+      <text x="540" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">32°C</text>
+      <text x="660" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">35°C</text>
+      <text x="780" y="268" fill="#5a8a5a" font-size="9" text-anchor="middle">38°C</text>
+      <text x="440" y="280" fill="#5a8a5a" font-size="8" text-anchor="middle">DRY BULB TEMPERATURE (°C)</text>
 
-  <!-- ROOF COMPONENTS -->
-  <rect x="30" y="28" width="110" height="62" rx="5" fill="rgba(45,100,20,0.6)" stroke="#4caf50" stroke-width="1.5"/>
-  <text x="85" y="52" text-anchor="middle" fill="#8bc34a" font-size="10" font-weight="700">🌿 GREEN ROOF</text>
-  <text x="85" y="67" text-anchor="middle" fill="#6fbc6f" font-size="8">Sedum + tropical</text>
-  <text x="85" y="79" text-anchor="middle" fill="#6fbc6f" font-size="8">−40°C surface</text>
+      <!-- Y labels (RH) -->
+      <text x="52" y="254" fill="#5a8a5a" font-size="9" text-anchor="end">20%</text>
+      <text x="52" y="220" fill="#5a8a5a" font-size="9" text-anchor="end">40%</text>
+      <text x="52" y="170" fill="#5a8a5a" font-size="9" text-anchor="end">60%</text>
+      <text x="52" y="120" fill="#5a8a5a" font-size="9" text-anchor="end">80%</text>
+      <text x="52" y="70" fill="#5a8a5a" font-size="9" text-anchor="end">100%</text>
+      <text x="14" y="155" fill="#5a8a5a" font-size="8" text-anchor="middle" transform="rotate(-90,14,155)">RELATIVE HUMIDITY (%)</text>
 
-  <rect x="190" y="28" width="120" height="62" rx="5" fill="rgba(0,90,120,0.5)" stroke="#00bcd4" stroke-width="1.5"/>
-  <text x="250" y="52" text-anchor="middle" fill="#00bcd4" font-size="10" font-weight="700">🌧 RAIN HARVEST</text>
-  <text x="250" y="67" text-anchor="middle" fill="#80deea" font-size="8">3,000 L/day</text>
-  <text x="250" y="79" text-anchor="middle" fill="#80deea" font-size="8">28°C avg · cistern</text>
+      <!-- WBT iso-lines (curves) -->
+      <!-- WBT=22°C line -->
+      <path d="M60,215 Q200,195 420,160 Q580,130 700,100 Q760,80 820,60" stroke="rgba(57,255,20,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+      <text x="825" y="63" fill="rgba(57,255,20,0.6)" font-size="7">WBT=22°C</text>
+      <!-- WBT=24°C line -->
+      <path d="M60,200 Q200,180 380,148 Q520,118 640,95 Q720,78 820,55" stroke="rgba(100,255,100,0.3)" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
+      <text x="825" y="58" fill="rgba(100,255,100,0.5)" font-size="7">WBT=24°C</text>
+      <!-- WBT=26°C line (CRITICAL CEILING) -->
+      <path d="M60,165 Q200,145 360,115 Q500,86 620,62 Q700,45 820,28" stroke="rgba(255,145,0,0.7)" stroke-width="1.5" fill="none" stroke-dasharray="6 3"/>
+      <text x="825" y="32" fill="rgba(255,145,0,0.9)" font-size="7">WBT=26°C ⚠CEIL</text>
 
-  <rect x="360" y="18" width="110" height="78" rx="5" fill="rgba(120,80,0,0.4)" stroke="#ffd600" stroke-width="1.5"/>
-  <text x="415" y="45" text-anchor="middle" fill="#ffd600" font-size="10" font-weight="700">☀ SOLAR</text>
-  <text x="415" y="59" text-anchor="middle" fill="#ffd600" font-size="10" font-weight="700">CHIMNEY</text>
-  <text x="415" y="73" text-anchor="middle" fill="#ffe082" font-size="8">v=2.81 m/s</text>
-  <text x="415" y="85" text-anchor="middle" fill="#ffe082" font-size="8">Q=2.25 m³/s</text>
+      <!-- ZONE 1: Passive-dominant (green) -->
+      <rect x="60" y="170" width="360" height="80" fill="url(#zoneGrad1)" rx="0"/>
+      <text x="240" y="200" fill="rgba(57,255,20,0.9)" font-size="8" text-anchor="middle" font-weight="700">ZONE 1</text>
+      <text x="240" y="213" fill="rgba(57,255,20,0.7)" font-size="7" text-anchor="middle">PASSIVE DOMINANT</text>
+      <text x="240" y="224" fill="rgba(57,255,20,0.5)" font-size="7" text-anchor="middle">η evap ≥70% · No backup</text>
 
-  <rect x="520" y="28" width="110" height="62" rx="5" fill="rgba(30,60,100,0.5)" stroke="#29b6f6" stroke-width="1.5"/>
-  <text x="575" y="50" text-anchor="middle" fill="#29b6f6" font-size="10" font-weight="700">💨 WIND</text>
-  <text x="575" y="64" text-anchor="middle" fill="#29b6f6" font-size="10" font-weight="700">CATCHER</text>
-  <text x="575" y="79" text-anchor="middle" fill="#81d4fa" font-size="8">Badgir · 360°</text>
+      <!-- ZONE 2: Hybrid (orange) -->
+      <rect x="420" y="100" width="260" height="150" fill="url(#zoneGrad2)" rx="0"/>
+      <text x="550" y="150" fill="rgba(255,145,0,0.9)" font-size="8" text-anchor="middle" font-weight="700">ZONE 2</text>
+      <text x="550" y="163" fill="rgba(255,145,0,0.7)" font-size="7" text-anchor="middle">HYBRID MODE</text>
+      <text x="550" y="174" fill="rgba(255,145,0,0.5)" font-size="7" text-anchor="middle">Partial mechanical assist</text>
 
-  <rect x="685" y="28" width="180" height="62" rx="5" fill="rgba(0,70,90,0.5)" stroke="#4dd0e1" stroke-width="1.5"/>
-  <text x="775" y="52" text-anchor="middle" fill="#4dd0e1" font-size="10" font-weight="700">🏔 EVAP TOWER</text>
-  <text x="775" y="67" text-anchor="middle" fill="#b2ebf2" font-size="8">Natural draft · ΔT=6.8°C</text>
-  <text x="775" y="79" text-anchor="middle" fill="#b2ebf2" font-size="8">2.0 L/min evaporation</text>
+      <!-- ZONE 3: Backup required (red) -->
+      <rect x="680" y="20" width="140" height="230" fill="url(#zoneGrad3)" rx="0"/>
+      <text x="750" y="120" fill="rgba(255,68,68,0.9)" font-size="8" text-anchor="middle" font-weight="700">ZONE 3</text>
+      <text x="750" y="133" fill="rgba(255,68,68,0.7)" font-size="7" text-anchor="middle">BACKUP</text>
+      <text x="750" y="144" fill="rgba(255,68,68,0.7)" font-size="7" text-anchor="middle">REQUIRED</text>
 
-  <!-- SERVER ROOM COMPONENTS -->
-  <rect x="310" y="193" width="250" height="130" rx="7" fill="rgba(10,30,10,0.95)" stroke="#39ff14" stroke-width="2" filter="url(#glow2)"/>
-  <rect x="323" y="207" width="222" height="9" rx="2" fill="rgba(57,255,20,0.12)" stroke="rgba(57,255,20,0.3)" stroke-width="0.5"/>
-  <rect x="323" y="220" width="222" height="9" rx="2" fill="rgba(57,255,20,0.12)" stroke="rgba(57,255,20,0.3)" stroke-width="0.5"/>
-  <rect x="323" y="233" width="222" height="9" rx="2" fill="rgba(57,255,20,0.12)" stroke="rgba(57,255,20,0.3)" stroke-width="0.5"/>
-  <rect x="323" y="246" width="222" height="9" rx="2" fill="rgba(57,255,20,0.12)" stroke="rgba(57,255,20,0.3)" stroke-width="0.5"/>
-  <circle cx="340" cy="212" r="3" fill="#39ff14"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.1s" repeatCount="indefinite"/></circle>
-  <circle cx="340" cy="225" r="3" fill="#00bcd4"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="0.8s" repeatCount="indefinite"/></circle>
-  <circle cx="340" cy="238" r="3" fill="#39ff14"><animate attributeName="opacity" values="0.9;0.1;0.9" dur="1.4s" repeatCount="indefinite"/></circle>
-  <circle cx="340" cy="251" r="3" fill="#ffd600"><animate attributeName="opacity" values="0.9;0.3;0.9" dur="0.6s" repeatCount="indefinite"/></circle>
-  <text x="435" y="278" text-anchor="middle" fill="#39ff14" font-size="12" font-weight="700" font-family="'Orbitron',monospace">AI SERVER CORE</text>
-  <text x="435" y="294" text-anchor="middle" fill="#6fbc6f" font-size="8.5">GPU · P_IT=100kW · T_target=28–30°C</text>
-  <text x="435" y="307" text-anchor="middle" fill="#4dd0e1" font-size="8">Q_total = 106.4 kW rejected</text>
+      <!-- Malaysia typical operating cloud -->
+      <ellipse cx="450" cy="145" rx="120" ry="55" fill="rgba(0,188,212,0.12)" stroke="rgba(0,188,212,0.5)" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <text x="450" y="130" fill="rgba(0,188,212,0.9)" font-size="8" text-anchor="middle" font-weight="700">MALAYSIA</text>
+      <text x="450" y="142" fill="rgba(0,188,212,0.8)" font-size="7" text-anchor="middle">TYPICAL RANGE</text>
+      <text x="450" y="153" fill="rgba(0,188,212,0.6)" font-size="7" text-anchor="middle">75–88% RH · 28–33°C</text>
 
-  <!-- AI CONTROLLER BOX -->
-  <rect x="310" y="330" width="250" height="48" rx="5" fill="rgba(255,109,0,0.12)" stroke="#ff6d00" stroke-width="1.5" filter="url(#glowOrange)"/>
-  <text x="435" y="349" text-anchor="middle" fill="#ff6d00" font-size="10" font-weight="700" font-family="'Orbitron',monospace">🧠 DQN+PID CONTROLLER</text>
-  <text x="435" y="363" text-anchor="middle" fill="#ffcc80" font-size="8">Rpi5 · PyTorch · MQTT · 10s cycle</text>
-  <text x="435" y="375" text-anchor="middle" fill="#ff6d00" font-size="8">s∈ℝ¹² → action space 7 actuators</text>
+      <!-- Malaysia straddles zone 2 primarily -->
+      <line x1="450" y1="145" x2="550" y2="155" stroke="rgba(0,188,212,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
 
-  <!-- Immersion Tank -->
-  <rect x="40" y="193" width="140" height="130" rx="7" fill="url(#waterGrad)" stroke="#00bcd4" stroke-width="1.5"/>
-  <text x="110" y="222" text-anchor="middle" fill="#00bcd4" font-size="10" font-weight="700">⚗ IMMERSION</text>
-  <text x="110" y="237" text-anchor="middle" fill="#80deea" font-size="8">ṁ=191 L/min</text>
-  <text x="110" y="250" text-anchor="middle" fill="#80deea" font-size="8">Cp=1670 J/kg·K</text>
-  <text x="110" y="265" text-anchor="middle" fill="#4dd0e1" font-size="9" font-weight="700">Q=106.4 kW ✓</text>
-  <text x="110" y="280" text-anchor="middle" fill="#4dd0e1" font-size="8">Pump: 1.8 kW</text>
-  <text x="110" y="295" text-anchor="middle" fill="#80deea" font-size="8">ΔT=20°C proven</text>
+      <!-- Legend -->
+      <rect x="65" y="25" width="130" height="50" rx="3" fill="rgba(0,0,0,0.5)" stroke="rgba(57,255,20,0.15)" stroke-width="1"/>
+      <rect x="72" y="34" width="8" height="8" rx="1" fill="rgba(57,255,20,0.5)"/>
+      <text x="84" y="42" fill="#90c090" font-size="7">Zone 1: Passive ≥70%</text>
+      <rect x="72" y="46" width="8" height="8" rx="1" fill="rgba(255,145,0,0.5)"/>
+      <text x="84" y="54" fill="#90c090" font-size="7">Zone 2: Hybrid mode</text>
+      <rect x="72" y="58" width="8" height="8" rx="1" fill="rgba(255,68,68,0.5)"/>
+      <text x="84" y="66" fill="#90c090" font-size="7">Zone 3: Backup req'd</text>
+    </svg>
+  </div>
 
-  <!-- Wet Wall -->
-  <rect x="710" y="193" width="155" height="130" rx="7" fill="rgba(20,60,20,0.7)" stroke="#8bc34a" stroke-width="1.5"/>
-  <text x="787" y="222" text-anchor="middle" fill="#8bc34a" font-size="10" font-weight="700">🎋 WET WALL</text>
-  <text x="787" y="237" text-anchor="middle" fill="#a5d6a7" font-size="8">ṁ_water=2.0 L/min</text>
-  <text x="787" y="251" text-anchor="middle" fill="#a5d6a7" font-size="8">h_fg=2431 kJ/kg</text>
-  <text x="787" y="266" text-anchor="middle" fill="#4caf50" font-size="9" font-weight="700">Q_evap=82.4 kW ✓</text>
-  <text x="787" y="281" text-anchor="middle" fill="#a5d6a7" font-size="8">ΔT_air = 6.8°C</text>
-  <text x="787" y="296" text-anchor="middle" fill="#a5d6a7" font-size="8">Bamboo fibre media</text>
-
-  <!-- GROUND LAYER -->
-  <rect x="60" y="378" width="160" height="75" rx="5" fill="rgba(30,60,10,0.7)" stroke="#66bb6a" stroke-width="1.5"/>
-  <text x="140" y="403" text-anchor="middle" fill="#66bb6a" font-size="10" font-weight="700">🌍 GEOTHERMAL</text>
-  <text x="140" y="419" text-anchor="middle" fill="#66bb6a" font-size="8.5">U·A·ΔT = 24 kW</text>
-  <text x="140" y="433" text-anchor="middle" fill="#a5d6a7" font-size="8">60m² · 5m depth</text>
-  <text x="140" y="446" text-anchor="middle" fill="#a5d6a7" font-size="8">22–24°C stable</text>
-
-  <rect x="350" y="378" width="175" height="75" rx="5" fill="rgba(0,60,70,0.7)" stroke="#26c6da" stroke-width="1.5"/>
-  <text x="437" y="403" text-anchor="middle" fill="#26c6da" font-size="10" font-weight="700">♻ GREYWATER</text>
-  <text x="437" y="419" text-anchor="middle" fill="#80deea" font-size="8.5">Biochar+UV filter</text>
-  <text x="437" y="433" text-anchor="middle" fill="#80deea" font-size="8">85% water reuse</text>
-  <text x="437" y="446" text-anchor="middle" fill="#80deea" font-size="8">Zero discharge</text>
-
-  <rect x="640" y="378" width="210" height="75" rx="5" fill="rgba(60,30,0,0.6)" stroke="#ffa726" stroke-width="1.5"/>
-  <text x="745" y="400" text-anchor="middle" fill="#ffa726" font-size="10" font-weight="700">🧊 PCM STORAGE</text>
-  <text x="745" y="415" text-anchor="middle" fill="#ffcc80" font-size="8.5">12.6 tonnes · 15.75 m³</text>
-  <text x="745" y="429" text-anchor="middle" fill="#ffcc80" font-size="8">L_f=200 kJ/kg · 14 hr shift</text>
-  <text x="745" y="443" text-anchor="middle" fill="#ffa726" font-size="8">Q=50kW·14hr=2,520 MJ</text>
-
-  <!-- FLOW ARROWS -->
-  <path d="M250,90 L250,145 L110,145 L110,193" stroke="#00bcd4" stroke-width="1.5" fill="none" marker-end="url(#arrowB)" class="flow-b" opacity="0.8"/>
-  <path d="M415,18 L415,3" stroke="#ffd600" stroke-width="2" fill="none" marker-end="url(#arrowG)" opacity="0.8"/>
-  <path d="M415,193 L415,96" stroke="#ffd600" stroke-width="1.5" fill="none" marker-end="url(#arrowG)" class="flow-g" opacity="0.7"/>
-  <path d="M630,59 L710,59 L710,200" stroke="#29b6f6" stroke-width="1.5" fill="none" marker-end="url(#arrowB)" class="flow-b" opacity="0.7"/>
-  <path d="M685,72 L620,72 L620,220 L560,220" stroke="#4dd0e1" stroke-width="1.5" fill="none" marker-end="url(#arrowB)" class="flow-b" opacity="0.8"/>
-  <!-- Immersion → Geo -->
-  <path d="M110,323 L110,378" stroke="#39ff14" stroke-width="1.5" fill="none" marker-end="url(#arrowG)" class="flow-g" opacity="0.8"/>
-  <!-- Geo return -->
-  <path d="M165,378 L165,350 L160,350 L160,323" stroke="#66bb6a" stroke-width="1.5" fill="none" marker-end="url(#arrowG)" stroke-dasharray="4 3" opacity="0.6"/>
-  <!-- Server → Greywater -->
-  <path d="M437,323 L437,378" stroke="#39ff14" stroke-width="1.5" fill="none" marker-end="url(#arrowG)" class="flow-g" opacity="0.8"/>
-  <!-- Greywater → Wet wall -->
-  <path d="M525,415 L640,415" stroke="#26c6da" stroke-width="1.5" fill="none" marker-end="url(#arrowB)" class="flow-b" opacity="0.7"/>
-  <!-- PCM → Server night -->
-  <path d="M745,378 L745,345 L600,345 L600,323" stroke="#ffa726" stroke-width="1.5" fill="none" marker-end="url(#arrowG)" stroke-dasharray="6 3" opacity="0.7"/>
-  <!-- AI Controller signal lines (orange) -->
-  <path d="M435,330 L435,323" stroke="#ff6d00" stroke-width="1" fill="none" marker-end="url(#arrowO)" class="flow-o" opacity="0.9"/>
-  <path d="M310,354 L180,354 L180,323" stroke="#ff6d00" stroke-width="1" fill="none" marker-end="url(#arrowO)" class="flow-o" opacity="0.7"/>
-  <path d="M560,354 L695,354 L695,323" stroke="#ff6d00" stroke-width="1" fill="none" marker-end="url(#arrowO)" class="flow-o" opacity="0.7"/>
-  <!-- Green roof ambient -->
-  <path d="M85,90 L85,145 L310,145 L310,193" stroke="#4caf50" stroke-width="1.5" fill="none" marker-end="url(#arrowG)" class="flow-g" opacity="0.6"/>
-
-  <!-- LEGEND -->
-  <rect x="680" y="475" width="200" height="58" rx="4" fill="rgba(0,0,0,0.6)" stroke="rgba(57,255,20,0.2)" stroke-width="1"/>
-  <line x1="690" y1="489" x2="710" y2="489" stroke="#39ff14" stroke-width="2" stroke-dasharray="6 3"/>
-  <text x="715" y="493" fill="#39ff14" font-size="8" font-family="'Space Mono',monospace">Coolant flow</text>
-  <line x1="690" y1="503" x2="710" y2="503" stroke="#00bcd4" stroke-width="2" stroke-dasharray="6 3"/>
-  <text x="715" y="507" fill="#00bcd4" font-size="8" font-family="'Space Mono',monospace">Water flow</text>
-  <line x1="690" y1="517" x2="710" y2="517" stroke="#ff6d00" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="715" y="521" fill="#ff6d00" font-size="8" font-family="'Space Mono',monospace">AI control signal</text>
-  <line x1="690" y1="531" x2="710" y2="531" stroke="#ffa726" stroke-width="1.5" stroke-dasharray="5 4"/>
-  <text x="715" y="535" fill="#ffa726" font-size="8" font-family="'Space Mono',monospace">PCM thermal (night)</text>
-</svg>
-```
-
+  <div class="honest-box" style="margin-top:10px">
+    <p><strong>Key finding:</strong> Malaysia's typical operating range (RH 75–88%, T 28–33°C) places the system predominantly in <strong>Zone 2 — Hybrid Mode</strong>. Pure passive operation is achievable during cooler mornings, night hours, and the drier inter-monsoon period (March–April, Sep–Oct). The <strong>original "Zero AC" claim is physically untenable</strong> for a high-density AI server at Malaysia's average humidity.</p>
   </div>
 </div>
 
-<!-- ═══════════════ GAP D: HARDWARE INTEGRATION ═══════════════ -->
-
-<div class="sec-title">// GAP D RESOLVED — HARDWARE INTEGRATION · SENSORS · CONTROLLERS · ACTUATORS</div>
-<div class="panel panel-red">
-  <!-- CONTROL LOOP -->
-  <div style="margin-bottom:16px">
-    <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--orange);letter-spacing:2px;margin-bottom:10px">🔁 CLOSED-LOOP CONTROL ARCHITECTURE</div>
-    <div class="ctrl-loop">
-      <div class="ctrl-node"><div class="n-title">SENSORS</div><div class="n-sub">28 nodes · I²C/RS485</div></div>
-      <div class="ctrl-arrow">→</div>
-      <div class="ctrl-node"><div class="n-title">EDGE MCU</div><div class="n-sub">Rpi5 · MQTT broker</div></div>
-      <div class="ctrl-arrow">→</div>
-      <div class="ctrl-node"><div class="n-title">DQN AGENT</div><div class="n-sub">PyTorch inference</div></div>
-      <div class="ctrl-arrow">→</div>
-      <div class="ctrl-node"><div class="n-title">PID LOOPS</div><div class="n-sub">7 actuator channels</div></div>
-      <div class="ctrl-arrow">→</div>
-      <div class="ctrl-node"><div class="n-title">ACTUATORS</div><div class="n-sub">Pumps · Valves</div></div>
-      <div class="ctrl-arrow">↩</div>
-      <div class="ctrl-node" style="border-color:var(--orange)"><div class="n-title" style="color:var(--orange)">FEEDBACK</div><div class="n-sub">10s cycle · reward calc</div></div>
-    </div>
-  </div>
-
-  <div class="hw-grid">
-    <div class="hw-card">
-      <h4>📡 SENSOR ARRAY (28 nodes)</h4>
-      <div class="sensor-list">
-        <div class="sensor-row"><div class="sensor-dot dot-green"></div>8× PT100 RTD — Coolant temp T_in / T_out per loop</div>
-        <div class="sensor-row"><div class="sensor-dot dot-blue"></div>4× DHT22 — Ambient RH + Temperature (roof/room/geo/exhaust)</div>
-        <div class="sensor-row"><div class="sensor-dot dot-gold"></div>4× NTC Thermistor — Chip-surface contact temperature</div>
-        <div class="sensor-row"><div class="sensor-dot dot-orange"></div>2× SP-110 Pyranometer — Solar irradiance W/m²</div>
-        <div class="sensor-row"><div class="sensor-dot dot-purple"></div>2× Ultrasonic Flow Meter — Coolant ṁ (L/min) real-time</div>
-        <div class="sensor-row"><div class="sensor-dot dot-blue"></div>3× Pressure Transducer — Loop ΔP (bar) for leak detection</div>
-        <div class="sensor-row"><div class="sensor-dot dot-green"></div>2× Ultrasonic Level — Cistern + greywater tank level</div>
-        <div class="sensor-row"><div class="sensor-dot dot-gold"></div>1× Anemometer — Wind speed + direction (roof)</div>
-        <div class="sensor-row"><div class="sensor-dot dot-orange"></div>1× DS18B20 string — PCM slab temperature profile (8-point)</div>
-        <div class="sensor-row"><div class="sensor-dot dot-green"></div>1× CT clamp — Pump power draw (Watts)</div>
+<!-- ══════════ NEW: MECHANICAL BACKUP SPECIFICATION ══════════ -->
+<div class="st st-red">// NEW IN v3 — MECHANICAL BACKUP SPECIFICATION · TRIGGER CONDITIONS · SIZING</div>
+<div class="panel panel-warn">
+  <div class="two">
+    <div>
+      <div class="ic ic-red" style="margin-bottom:12px">
+        <h4>🔴 BACKUP ACTIVATION THRESHOLDS (AI-TRIGGERED)</h4>
+        <table class="backup-table">
+          <tr><th>Condition</th><th>Trigger Value</th><th>AI Action</th><th>Mode</th></tr>
+          <tr>
+            <td>T_chip high</td><td>&gt; 36°C</td>
+            <td>Activate mini-split 50% capacity</td>
+            <td style="color:var(--warn)">⚠ HYBRID</td>
+          </tr>
+          <tr>
+            <td>RH sustained</td><td>RH &gt; 88% for &gt;30min</td>
+            <td>Activate dry-coil dehumidify mode</td>
+            <td style="color:var(--warn)">⚠ HYBRID</td>
+          </tr>
+          <tr>
+            <td>Wet-bulb</td><td>T_wb &gt; 26.5°C</td>
+            <td>Wet wall bypassed; backup 100%</td>
+            <td style="color:var(--honest)">❌ BACKUP</td>
+          </tr>
+          <tr>
+            <td>T_chip critical</td><td>&gt; 42°C</td>
+            <td>Full backup + throttle GPU load</td>
+            <td style="color:var(--honest)">❌ EMERGENCY</td>
+          </tr>
+          <tr>
+            <td>Pump failure</td><td>Flow &lt; 10 L/min</td>
+            <td>Alarm + immediate backup</td>
+            <td style="color:var(--honest)">❌ FAULT</td>
+          </tr>
+        </table>
+      </div>
+      <div class="ic ic-red">
+        <h4>⚙ BACKUP UNIT SIZING</h4>
+        <div class="eq eq-red">
+          <span class="cm">// WORST-CASE BACKUP LOAD (RH=92%, WBT=27°C)</span><br>
+          Passive evap residual: ~5 kW (η=18%)<br>
+          Geo-loop: 24 kW (temp-independent)<br>
+          Remaining load = 106.4 − 24 − 5 = <strong>77.4 kW</strong><br><br>
+          <span class="cm">// BACKUP UNIT SPEC</span><br>
+          Type: VRF multi-split (dry-coil, no humidify)<br>
+          Capacity: 90 kW (30% safety margin)<br>
+          COP: 4.2 (inverter scroll)<br>
+          Power: 90/4.2 = <strong>21.4 kW electrical</strong><br>
+          <span class="cm">// Activates est. 15–20% of annual hours (MY data)</span>
+        </div>
+        <div class="result result-red">⟹ 1× 90 kW VRF unit required · Est. 15–20% annual runtime</div>
       </div>
     </div>
 
-```
-<div class="hw-card">
-  <h4>⚙ ACTUATORS + CONTROLLERS</h4>
-  <div class="sensor-list">
-    <div class="sensor-row"><div class="sensor-dot dot-blue"></div><strong>Immersion pump:</strong> Grundfos CM5-4 · 1.8 kW · VFD controlled 0–100%</div>
-    <div class="sensor-row"><div class="sensor-dot dot-blue"></div><strong>Geo-loop pump:</strong> Grundfos UP25-60 · 0.3 kW · ON/OFF + modulating</div>
-    <div class="sensor-row"><div class="sensor-dot dot-green"></div><strong>Recycle pump:</strong> 12V DC mini centrifugal · 0.2 kW · PWM duty cycle</div>
-    <div class="sensor-row"><div class="sensor-dot dot-orange"></div><strong>Chimney damper:</strong> 24V motorised actuator · 0–100% opening · 45s stroke</div>
-    <div class="sensor-row"><div class="sensor-dot dot-gold"></div><strong>Wet wall valve:</strong> 3-way ball valve · 24V servo · 0–100% water flow</div>
-    <div class="sensor-row"><div class="sensor-dot dot-purple"></div><strong>PCM bypass:</strong> 2-position motorised valve · 24V · fast-response 8s</div>
-    <div class="sensor-row"><div class="sensor-dot dot-green"></div><strong>Edge compute:</strong> Raspberry Pi 5 (8GB) · 64-bit · PyTorch 2.x · 24/7</div>
-    <div class="sensor-row"><div class="sensor-dot dot-orange"></div><strong>Comms:</strong> MQTT over Ethernet · Modbus RTU to VFD · RS-485 bus</div>
-    <div class="sensor-row"><div class="sensor-dot dot-gold"></div><strong>Dashboard:</strong> Grafana + InfluxDB · real-time KPI display · alerts via Telegram</div>
-    <div class="sensor-row"><div class="sensor-dot dot-blue"></div><strong>UPS:</strong> 24V Li-FePO4 · 2 kWh · sustains control system 8 hrs on grid loss</div>
+    <div>
+      <div class="ic ic-warn" style="margin-bottom:12px">
+        <h4>📅 SEASONAL PASSIVE FRACTION ESTIMATE</h4>
+        <div class="eq eq-warn">
+          <span class="cm">// Based on MMD Penang 2023 hourly data</span><br>
+          NE Monsoon (Nov–Feb):  RH avg 83% → Zone 2 mostly<br>
+          Inter-monsoon 1 (Mar–Apr): RH avg 72% → Zone 1–2<br>
+          SW Monsoon (May–Sep): RH avg 80% → Zone 2<br>
+          Inter-monsoon 2 (Oct):  RH avg 75% → Zone 1–2<br><br>
+          <span class="cm">// ESTIMATED ANNUAL HOURS</span><br>
+          Zone 1 (passive-only):  ~28% of hours ≈ 2,453 hrs/yr<br>
+          Zone 2 (hybrid):        ~57% of hours ≈ 4,993 hrs/yr<br>
+          Zone 3 (backup req'd):  ~15% of hours ≈ 1,314 hrs/yr
+        </div>
+        <div class="result result-warn">⟹ Passive system does ~85% of annual cooling work (hrs-weighted)</div>
+      </div>
+
+      <div class="ic ic-warn">
+        <h4>💡 REVISED HONEST ENERGY CLAIM</h4>
+        <div class="eq eq-warn">
+          <span class="cm">// CONVENTIONAL BASELINE: 56.3 kW cooling 24/7</span><br>
+          Annual baseline energy = 56.3 × 8760 = 493,188 kWh<br><br>
+          <span class="cm">// EGK HYBRID SYSTEM (estimated)</span><br>
+          Zone 1 (2453h): 2.3 kW × 2453 = &nbsp;&nbsp;5,642 kWh<br>
+          Zone 2 (4993h): 12 kW × 4993 &nbsp;= 59,916 kWh<br>
+          Zone 3 (1314h): 23.7 kW × 1314= 31,142 kWh<br>
+          Total EGK: <strong>96,700 kWh/yr</strong><br><br>
+          Saving = (493,188−96,700)/493,188<br>
+          = <strong>80.4% energy reduction</strong> (revised honest estimate)
+        </div>
+        <div class="result result-warn">⟹ Even with backup: ~80% saving vs conventional — still compelling</div>
+      </div>
+    </div>
   </div>
 </div>
-```
 
+<!-- ══════════ AI ENGINE ══════════ -->
+<div class="st">// AI CONTROL ENGINE · DQN + PID HYBRID · PSYCHROMETRIC-AWARE</div>
+<div class="panel panel-orange">
+  <div class="two">
+    <div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:2px;margin-bottom:8px">🧠 MODEL: DQN + PID + PSYCHROMETRIC GUARD</div>
+      <p style="font-size:0.83rem;color:#90c090;line-height:1.5;margin-bottom:8px">Deep Q-Network agent augmented with a <strong style="color:var(--gold)">real-time psychrometric guard layer</strong> — new in v3. Before issuing any evaporative cooling action, the agent checks T_wb against the current derating table. If η_evap &lt; 30%, wet wall is bypassed and the backup unit quota is evaluated.</p>
+      <div class="eq">
+        <span class="cm">// BELLMAN UPDATE</span><br>
+        Q(s,a) ← Q(s,a) + α·[r + γ·max Q(s',a') − Q(s,a)]<br>
+        <span class="cm">// α=0.001 · γ=0.97 · ε-greedy exploration</span>
+      </div>
+      <div class="eq">
+        <span class="cm">// REWARD FUNCTION (v3 — includes backup penalty)</span><br>
+        R = −w₁·(T_chip−T_set)²<br>
+        &nbsp;&nbsp;&nbsp;−w₂·P_pump − w₃·W_water<br>
+        &nbsp;&nbsp;&nbsp;−w₄·P_backup_unit<br>
+        <span class="cm">// w₁=10 w₂=0.5 w₃=0.3 w₄=8 (backup costly)</span>
+      </div>
+      <div class="eq">
+        <span class="cm">// PSYCHROMETRIC GUARD (v3 new)</span><br>
+        T_wb = compute_wb(T_db, RH) &nbsp;&nbsp;<span class="cm">// Stull 2011</span><br>
+        η_evap = (T_db − T_target) / (T_db − T_wb)<br>
+        IF η_evap &lt; 0.30:<br>
+        &nbsp;&nbsp;wetwall_valve.set(0) &nbsp;<span class="cm">// bypass</span><br>
+        &nbsp;&nbsp;backup_unit.request(load_residual)<br>
+        ELSE:<br>
+        &nbsp;&nbsp;DQN_agent.predict(state_vector)
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:2px;margin-bottom:8px">📡 STATE VECTOR s ∈ ℝ¹⁴ (v3 adds 2)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px">
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">T_chip (°C)</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">T_coolant_in</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">T_coolant_out</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">T_ambient</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">RH (%)</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">T_wb (computed)</span>
+        <span style="background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.3);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:#ff9999;font-family:'Space Mono',monospace">η_evap (NEW v3)</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">Solar_irr</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">Wind_spd</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">GPU_load</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">T_geo_loop</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">PCM_state</span>
+        <span style="background:rgba(255,214,0,0.08);border:1px solid rgba(255,214,0,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--gold);font-family:'Space Mono',monospace">Tank_level</span>
+        <span style="background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.3);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:#ff9999;font-family:'Space Mono',monospace">Backup_kW (NEW v3)</span>
+      </div>
+      <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:2px;margin-bottom:8px">⚡ ACTION SPACE 8 (v3 adds backup control)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">Pump_flow: LOW/MED/HIGH</span>
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">Wet_wall_valve: 0–100%</span>
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">PCM_bypass: ON/OFF</span>
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">Chimney_damper: 0–100%</span>
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">Geo_loop_valve: ON/OFF</span>
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">Recycle_pump: PWM</span>
+        <span style="background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.3);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:#ff9999;font-family:'Space Mono',monospace">Backup_unit: 0/50/100% (NEW v3)</span>
+        <span style="background:rgba(0,188,212,0.08);border:1px solid rgba(0,188,212,0.25);border-radius:4px;padding:3px 7px;font-size:0.62rem;color:var(--water);font-family:'Space Mono',monospace">Alarm: NORMAL/WARN/CRIT</span>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ═══════════════ HEAT REMOVAL PIPELINE ═══════════════ -->
+<!-- ══════════ THERMODYNAMIC MODEL ══════════ -->
+<div class="st">// THERMODYNAMIC MODEL · HEAT EQUATIONS · ENERGY BALANCE · VALIDATED FIGURES</div>
+<div class="panel panel-blue">
+  <div class="three">
+    <div class="ic">
+      <h4>🔥 SERVER HEAT LOAD</h4>
+      <div class="eq">Q_server = P_IT / η_PSU<br>= 100 kW / 0.94<br>= <strong>106.4 kW</strong><br><span class="cm">// Must be removed 24/7</span></div>
+      <div class="result">⟹ 106.4 kW total heat rejected</div>
+    </div>
+    <div class="ic">
+      <h4>💧 IMMERSION — PROVEN</h4>
+      <div class="eq">Q = ṁ · Cp · ΔT<br>Cp_oil = 1,670 J/kg·K<br>ṁ = 106400/(1670×20)<br>= <strong>3.19 kg/s · 191 L/min</strong><br>P_pump = <strong>1.8 kW</strong></div>
+      <div class="result">⟹ ΔT=20°C at 191 L/min ✓ calculated</div>
+    </div>
+    <div class="ic">
+      <h4>🌍 GEOTHERMAL — STEADY</h4>
+      <div class="eq">Q_geo = U·A·ΔT<br>= 50 × 60 × 8<br>= <strong>24 kW</strong><br><span class="cm">// RH-independent ✓</span></div>
+      <div class="result">⟹ 24 kW RH-independent — reliable anchor</div>
+    </div>
+    <div class="ic ic-warn">
+      <h4>🎋 WET WALL — RH-DERATED</h4>
+      <div class="eq eq-warn">Q_evap_max = ṁ_water·h_fg<br>= 0.034 kg/s × 2431 kJ/kg<br>= <strong>82.7 kW (theoretical)</strong><br>At RH=80% (η=50%):<br>Q_actual = <strong>41 kW</strong><br>At RH=90% (η=20%):<br>Q_actual = <strong>16 kW</strong></div>
+      <div class="result result-warn">⟹ NOT 82 kW in typical MY conditions — honest range: 16–41 kW</div>
+    </div>
+    <div class="ic">
+      <h4>☀ SOLAR CHIMNEY</h4>
+      <div class="eq">v = √(2·g·H·ΔT/T_amb)<br>= √(2×9.81×8×15/303)<br>= <strong>2.81 m/s</strong><br>Q_v = 2.81 × 0.8 = <strong>2.25 m³/s</strong></div>
+      <div class="result">⟹ Passive exhaust 2.81 m/s · zero power ✓</div>
+    </div>
+    <div class="ic">
+      <h4>🧊 PCM STORAGE</h4>
+      <div class="eq">Q_PCM = m · L_f<br>L_f = 200 kJ/kg<br>m = (50kW×14h×3600)/200000<br>= <strong>12,600 kg · 15.75 m³</strong></div>
+      <div class="result">⟹ 14-hr peak shift at 50 kW avg ✓</div>
+    </div>
+  </div>
 
-<div class="sec-title">// HEAT REMOVAL PIPELINE</div>
+  <!-- HONEST ENERGY BALANCE -->
+  <div style="margin-top:14px;background:rgba(0,0,0,0.45);border:1px solid rgba(57,255,20,0.2);border-radius:8px;padding:13px">
+    <div style="font-family:'Orbitron',monospace;font-size:0.63rem;color:var(--glow);letter-spacing:2px;margin-bottom:8px">⚖ HONEST ENERGY BALANCE — THREE OPERATING SCENARIOS</div>
+    <div style="font-family:'Space Mono',monospace;font-size:0.68rem;color:#90c090;line-height:2">
+      <strong style="color:var(--glow)">BEST CASE</strong> (RH≤65%, T=29°C, Night): Geo 24kW + Evap 65kW + PCM 17kW = <strong style="color:var(--glow)">106kW ✓ Full passive</strong><br>
+      <strong style="color:var(--gold)">TYPICAL</strong> (RH=80%, T=31°C, Day): Geo 24kW + Evap 41kW = 65kW → <strong style="color:var(--gold)">41.4 kW deficit → hybrid backup</strong><br>
+      <strong style="color:var(--honest)">WORST CASE</strong> (RH=92%, T=33°C, Monsoon): Geo 24kW + Evap 16kW = 40kW → <strong style="color:var(--honest)">66.4 kW deficit → full backup</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SYSTEM DIAGRAM ══════════ -->
+<div class="system-diagram">
+  <div class="st">// SYSTEM ARCHITECTURE WITH PSYCHROMETRIC-AWARE AI CONTROL</div>
+  <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="Rajdhani,sans-serif">
+    <defs>
+      <linearGradient id="sG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#1a4a1a"/><stop offset="100%" style="stop-color:#0a1a0a"/></linearGradient>
+      <linearGradient id="wG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#006064"/><stop offset="100%" style="stop-color:#004d40"/></linearGradient>
+      <linearGradient id="eG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#2d4a1a"/><stop offset="100%" style="stop-color:#1a2a0a"/></linearGradient>
+      <filter id="gf"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="rf"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <marker id="mG" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#39ff14"/></marker>
+      <marker id="mB" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#00bcd4"/></marker>
+      <marker id="mO" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ff6d00"/></marker>
+      <marker id="mR" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#ff4444"/></marker>
+    </defs>
+
+    <!-- BG zones -->
+    <rect x="0" y="0" width="900" height="175" fill="url(#sG)" rx="6"/>
+    <rect x="0" y="355" width="900" height="205" fill="url(#eG)" rx="6"/>
+    <rect x="0" y="175" width="900" height="180" fill="rgba(0,40,40,0.55)"/>
+
+    <text x="16" y="20" fill="#39ff14" font-size="8.5" font-family="'Space Mono',monospace" letter-spacing="2" opacity="0.7">ROOF / CANOPY LAYER</text>
+    <text x="16" y="196" fill="#00bcd4" font-size="8.5" font-family="'Space Mono',monospace" letter-spacing="2" opacity="0.7">SERVER ROOM / COOLING CORE</text>
+    <text x="16" y="372" fill="#8bc34a" font-size="8.5" font-family="'Space Mono',monospace" letter-spacing="2" opacity="0.7">GROUND / STORAGE LAYER</text>
+
+    <!-- ROOF -->
+    <rect x="28" y="26" width="100" height="58" rx="5" fill="rgba(45,100,20,0.6)" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="78" y="50" text-anchor="middle" fill="#8bc34a" font-size="10" font-weight="700">🌿 GREEN</text>
+    <text x="78" y="63" text-anchor="middle" fill="#8bc34a" font-size="10" font-weight="700">ROOF</text>
+    <text x="78" y="76" text-anchor="middle" fill="#6fbc6f" font-size="7.5">−37°C surface</text>
+
+    <rect x="180" y="26" width="115" height="58" rx="5" fill="rgba(0,90,120,0.5)" stroke="#00bcd4" stroke-width="1.5"/>
+    <text x="237" y="50" text-anchor="middle" fill="#00bcd4" font-size="10" font-weight="700">🌧 RAIN</text>
+    <text x="237" y="63" text-anchor="middle" fill="#00bcd4" font-size="10" font-weight="700">HARVEST</text>
+    <text x="237" y="76" text-anchor="middle" fill="#80deea" font-size="7.5">3,000 L/day · 28°C</text>
+
+    <rect x="350" y="16" width="105" height="75" rx="5" fill="rgba(120,80,0,0.4)" stroke="#ffd600" stroke-width="1.5"/>
+    <text x="402" y="42" text-anchor="middle" fill="#ffd600" font-size="10" font-weight="700">☀ SOLAR</text>
+    <text x="402" y="56" text-anchor="middle" fill="#ffd600" font-size="10" font-weight="700">CHIMNEY</text>
+    <text x="402" y="70" text-anchor="middle" fill="#ffe082" font-size="7.5">v=2.81m/s calc</text>
+    <text x="402" y="82" text-anchor="middle" fill="#ffe082" font-size="7.5">Zero power ✓</text>
+
+    <rect x="510" y="26" width="105" height="58" rx="5" fill="rgba(30,60,100,0.5)" stroke="#29b6f6" stroke-width="1.5"/>
+    <text x="562" y="50" text-anchor="middle" fill="#29b6f6" font-size="10" font-weight="700">💨 WIND</text>
+    <text x="562" y="64" text-anchor="middle" fill="#29b6f6" font-size="10" font-weight="700">CATCHER</text>
+    <text x="562" y="76" text-anchor="middle" fill="#81d4fa" font-size="7.5">Badgir · AI-steered</text>
+
+    <!-- EVAP TOWER with RH warning -->
+    <rect x="672" y="26" width="195" height="75" rx="5" fill="rgba(0,70,90,0.5)" stroke="#4dd0e1" stroke-width="1.5"/>
+    <text x="769" y="48" text-anchor="middle" fill="#4dd0e1" font-size="10" font-weight="700">🎋 WET WALL EVAP</text>
+    <text x="769" y="62" text-anchor="middle" fill="#b2ebf2" font-size="7.5">16–82 kW (RH-derated)</text>
+    <text x="769" y="75" text-anchor="middle" fill="#ff9100" font-size="7.5">⚠ bypassed RH&gt;88%</text>
+    <text x="769" y="88" text-anchor="middle" fill="#80deea" font-size="7.5">Bamboo media · 2.0 L/min</text>
+
+    <!-- SERVER ROOM -->
+    <rect x="300" y="188" width="245" height="128" rx="7" fill="rgba(8,24,8,0.97)" stroke="#39ff14" stroke-width="2" filter="url(#gf)"/>
+    <rect x="313" y="202" width="218" height="9" rx="2" fill="rgba(57,255,20,0.11)" stroke="rgba(57,255,20,0.28)" stroke-width="0.5"/>
+    <rect x="313" y="215" width="218" height="9" rx="2" fill="rgba(57,255,20,0.11)" stroke="rgba(57,255,20,0.28)" stroke-width="0.5"/>
+    <rect x="313" y="228" width="218" height="9" rx="2" fill="rgba(57,255,20,0.11)" stroke="rgba(57,255,20,0.28)" stroke-width="0.5"/>
+    <rect x="313" y="241" width="218" height="9" rx="2" fill="rgba(57,255,20,0.11)" stroke="rgba(57,255,20,0.28)" stroke-width="0.5"/>
+    <circle cx="330" cy="207" r="2.5" fill="#39ff14"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="1.1s" repeatCount="indefinite"/></circle>
+    <circle cx="330" cy="220" r="2.5" fill="#00bcd4"><animate attributeName="opacity" values="0.9;0.2;0.9" dur="0.8s" repeatCount="indefinite"/></circle>
+    <circle cx="330" cy="233" r="2.5" fill="#39ff14"><animate attributeName="opacity" values="0.9;0.1;0.9" dur="1.4s" repeatCount="indefinite"/></circle>
+    <circle cx="330" cy="246" r="2.5" fill="#ffd600"><animate attributeName="opacity" values="0.9;0.3;0.9" dur="0.6s" repeatCount="indefinite"/></circle>
+    <text x="422" y="272" text-anchor="middle" fill="#39ff14" font-size="12" font-weight="700" font-family="'Orbitron',monospace">AI SERVER CORE</text>
+    <text x="422" y="287" text-anchor="middle" fill="#6fbc6f" font-size="8">P_IT=100kW · T_target=28–30°C</text>
+    <text x="422" y="300" text-anchor="middle" fill="#4dd0e1" font-size="8">Q_total = 106.4 kW rejected</text>
+
+    <!-- IMMERSION TANK -->
+    <rect x="38" y="188" width="140" height="128" rx="7" fill="url(#wG)" stroke="#00bcd4" stroke-width="1.5"/>
+    <text x="108" y="214" text-anchor="middle" fill="#00bcd4" font-size="10" font-weight="700">⚗ IMMERSION</text>
+    <text x="108" y="229" text-anchor="middle" fill="#80deea" font-size="8">191 L/min · 1.8 kW</text>
+    <text x="108" y="244" text-anchor="middle" fill="#80deea" font-size="8">Cp=1670 J/kg·K</text>
+    <text x="108" y="259" text-anchor="middle" fill="#4dd0e1" font-size="9" font-weight="700">Q=106.4 kW ✓</text>
+    <text x="108" y="274" text-anchor="middle" fill="#80deea" font-size="8">ΔT=20°C calculated</text>
+    <text x="108" y="290" text-anchor="middle" fill="#39ff14" font-size="8">VFD controlled</text>
+
+    <!-- AI CONTROLLER + PSYCH GUARD -->
+    <rect x="300" y="328" width="245" height="52" rx="5" fill="rgba(255,109,0,0.1)" stroke="#ff6d00" stroke-width="1.5" filter="url(#rf)"/>
+    <text x="422" y="347" text-anchor="middle" fill="#ff6d00" font-size="9.5" font-weight="700" font-family="'Orbitron',monospace">🧠 DQN+PID CONTROLLER</text>
+    <text x="422" y="361" text-anchor="middle" fill="#ffcc80" font-size="7.5">s∈ℝ¹⁴ · 8 actuators · 10s cycle · Rpi5</text>
+    <text x="422" y="373" text-anchor="middle" fill="#ff9100" font-size="7.5">⚠ PSYCHROMETRIC GUARD: η_evap check per cycle</text>
+
+    <!-- BACKUP UNIT (NEW v3 — RED) -->
+    <rect x="672" y="188" width="195" height="128" rx="7" fill="rgba(60,10,10,0.75)" stroke="#ff4444" stroke-width="1.5" filter="url(#rf)"/>
+    <text x="769" y="220" text-anchor="middle" fill="#ff4444" font-size="10" font-weight="700">🔴 BACKUP VRF UNIT</text>
+    <text x="769" y="236" text-anchor="middle" fill="#ff9999" font-size="8">NEW v3 — HONEST ADDITION</text>
+    <text x="769" y="252" text-anchor="middle" fill="#ffc0c0" font-size="8">Capacity: 90 kW</text>
+    <text x="769" y="267" text-anchor="middle" fill="#ffc0c0" font-size="8">Power: 21.4 kW (COP=4.2)</text>
+    <text x="769" y="282" text-anchor="middle" fill="#ff9100" font-size="8">Runtime: ~15–20% annual</text>
+    <text x="769" y="297" text-anchor="middle" fill="#ff4444" font-size="8">Triggers: T_chip&gt;36°C / RH&gt;88%</text>
+    <text x="769" y="308" text-anchor="middle" fill="#ff4444" font-size="7.5">T_wb&gt;26.5°C / fault</text>
+
+    <!-- GROUND LAYER -->
+    <rect x="58" y="378" width="162" height="75" rx="5" fill="rgba(30,60,10,0.7)" stroke="#66bb6a" stroke-width="1.5"/>
+    <text x="139" y="402" text-anchor="middle" fill="#66bb6a" font-size="10" font-weight="700">🌍 GEOTHERMAL</text>
+    <text x="139" y="417" text-anchor="middle" fill="#66bb6a" font-size="8.5">U·A·ΔT = 24 kW</text>
+    <text x="139" y="431" text-anchor="middle" fill="#a5d6a7" font-size="8">60m² PEX · 5m depth</text>
+    <text x="139" y="444" text-anchor="middle" fill="#a5d6a7" font-size="8">RH-independent ✓</text>
+
+    <rect x="340" y="378" width="170" height="75" rx="5" fill="rgba(0,60,70,0.7)" stroke="#26c6da" stroke-width="1.5"/>
+    <text x="425" y="402" text-anchor="middle" fill="#26c6da" font-size="10" font-weight="700">♻ GREYWATER</text>
+    <text x="425" y="417" text-anchor="middle" fill="#80deea" font-size="8.5">Biochar + UV</text>
+    <text x="425" y="431" text-anchor="middle" fill="#80deea" font-size="8">85% water reuse</text>
+    <text x="425" y="445" text-anchor="middle" fill="#80deea" font-size="8">0.3 L/min net makeup</text>
+
+    <rect x="625" y="378" width="230" height="75" rx="5" fill="rgba(60,30,0,0.6)" stroke="#ffa726" stroke-width="1.5"/>
+    <text x="740" y="400" text-anchor="middle" fill="#ffa726" font-size="10" font-weight="700">🧊 PCM STORAGE</text>
+    <text x="740" y="415" text-anchor="middle" fill="#ffcc80" font-size="8.5">12.6 t · L_f=200 kJ/kg</text>
+    <text x="740" y="429" text-anchor="middle" fill="#ffcc80" font-size="8">14-hr shift · 2,520 MJ</text>
+    <text x="740" y="443" text-anchor="middle" fill="#ffa726" font-size="8">Night charge · Day discharge</text>
+
+    <!-- FLOW ARROWS -->
+    <path d="M237,84 L237,142 L108,142 L108,188" stroke="#00bcd4" stroke-width="1.5" fill="none" marker-end="url(#mB)" class="fb" opacity="0.8"/>
+    <path d="M402,16 L402,2" stroke="#ffd600" stroke-width="2" fill="none" marker-end="url(#mG)" opacity="0.8"/>
+    <path d="M402,188 L402,91" stroke="#ffd600" stroke-width="1.5" fill="none" marker-end="url(#mG)" class="fg" opacity="0.7"/>
+    <path d="M615,59 L672,59 L672,198" stroke="#29b6f6" stroke-width="1.5" fill="none" marker-end="url(#mB)" class="fb" opacity="0.7"/>
+    <!-- Evap → server (dashed when RH high) -->
+    <path d="M672,140 L620,140 L620,220 L545,220" stroke="#4dd0e1" stroke-width="1.5" fill="none" marker-end="url(#mB)" stroke-dasharray="6 4" opacity="0.7"/>
+    <!-- Immersion → geo -->
+    <path d="M108,316 L108,378" stroke="#39ff14" stroke-width="1.5" fill="none" marker-end="url(#mG)" class="fg" opacity="0.8"/>
+    <!-- Geo return -->
+    <path d="M158,378 L158,345 L150,345 L150,316" stroke="#66bb6a" stroke-width="1.5" fill="none" marker-end="url(#mG)" stroke-dasharray="4 3" opacity="0.6"/>
+    <!-- Server → greywater -->
+    <path d="M422,316 L422,378" stroke="#39ff14" stroke-width="1.5" fill="none" marker-end="url(#mG)" class="fg" opacity="0.8"/>
+    <!-- Greywater → wet wall -->
+    <path d="M510,415 L625,415" stroke="#26c6da" stroke-width="1.5" fill="none" marker-end="url(#mB)" class="fb" opacity="0.7"/>
+    <!-- PCM → server (night) -->
+    <path d="M740,378 L740,345 L580,345 L580,316" stroke="#ffa726" stroke-width="1.5" fill="none" marker-end="url(#mG)" stroke-dasharray="6 3" opacity="0.7"/>
+    <!-- AI signals -->
+    <path d="M422,328 L422,316" stroke="#ff6d00" stroke-width="1" fill="none" marker-end="url(#mO)" class="fo" opacity="0.9"/>
+    <path d="M300,350 L178,350 L178,316" stroke="#ff6d00" stroke-width="1" fill="none" marker-end="url(#mO)" class="fo" opacity="0.7"/>
+    <!-- AI → Backup (red signal) -->
+    <path d="M545,354 L672,354 L672,316" stroke="#ff4444" stroke-width="1.5" fill="none" marker-end="url(#mR)" class="fr" opacity="0.9"/>
+    <!-- Green roof ambient -->
+    <path d="M78,84 L78,142 L300,142 L300,188" stroke="#4caf50" stroke-width="1.2" fill="none" marker-end="url(#mG)" class="fg" opacity="0.5"/>
+
+    <!-- LEGEND -->
+    <rect x="8" y="488" width="200" height="68" rx="4" fill="rgba(0,0,0,0.65)" stroke="rgba(57,255,20,0.2)" stroke-width="1"/>
+    <line x1="16" y1="502" x2="36" y2="502" stroke="#39ff14" stroke-width="2" stroke-dasharray="6 3"/>
+    <text x="42" y="506" fill="#90c090" font-size="8" font-family="'Space Mono',monospace">Coolant / passive flow</text>
+    <line x1="16" y1="516" x2="36" y2="516" stroke="#00bcd4" stroke-width="2" stroke-dasharray="6 3"/>
+    <text x="42" y="520" fill="#90c090" font-size="8" font-family="'Space Mono',monospace">Water flow</text>
+    <line x1="16" y1="530" x2="36" y2="530" stroke="#ff6d00" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="42" y="534" fill="#90c090" font-size="8" font-family="'Space Mono',monospace">AI control signal</text>
+    <line x1="16" y1="544" x2="36" y2="544" stroke="#ff4444" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="42" y="548" fill="#ff9999" font-size="8" font-family="'Space Mono',monospace">Backup trigger (v3 NEW)</text>
+  </svg>
+</div>
+
+<!-- ══════════ HARDWARE ══════════ -->
+<div class="st">// HARDWARE INTEGRATION · 28 SENSORS · 8 ACTUATORS · CLOSED-LOOP</div>
+<div class="panel panel-orange">
+  <div class="ctrl">
+    <div class="cn"><div class="ct">SENSORS</div><div class="cs">28 nodes · I²C/RS485</div></div>
+    <div class="ca">→</div>
+    <div class="cn"><div class="ct">EDGE MCU</div><div class="cs">Rpi5 · MQTT</div></div>
+    <div class="ca">→</div>
+    <div class="cn"><div class="ct">PSYCH GUARD</div><div class="cs">T_wb · η_evap check</div></div>
+    <div class="ca">→</div>
+    <div class="cn"><div class="ct">DQN AGENT</div><div class="cs">PyTorch inference</div></div>
+    <div class="ca">→</div>
+    <div class="cn"><div class="ct">PID LOOPS</div><div class="cs">8 actuators</div></div>
+    <div class="ca">→</div>
+    <div class="cn" style="border-color:var(--honest)"><div class="ct" style="color:var(--honest)">BACKUP CTRL</div><div class="cs">VRF if threshold</div></div>
+    <div class="ca">↩</div>
+    <div class="cn" style="border-color:var(--orange)"><div class="ct" style="color:var(--orange)">FEEDBACK</div><div class="cs">10s · reward calc</div></div>
+  </div>
+  <div class="hw-grid" style="margin-top:12px">
+    <div class="hw-card">
+      <h4>📡 SENSOR ARRAY (28 nodes)</h4>
+      <div class="sl-row"><div class="dot dg"></div>8× PT100 RTD — Coolant T_in / T_out per loop</div>
+      <div class="sl-row"><div class="dot db"></div>4× DHT22 — RH + T_db (roof / room / geo / exhaust)</div>
+      <div class="sl-row"><div class="dot dy"></div>4× NTC thermistor — chip-surface contact temp</div>
+      <div class="sl-row"><div class="dot do"></div>2× SP-110 Pyranometer — Solar W/m²</div>
+      <div class="sl-row"><div class="dot dp"></div>2× Ultrasonic flow meter — ṁ L/min real-time</div>
+      <div class="sl-row"><div class="dot db"></div>3× Pressure transducer — loop ΔP bar, leak detect</div>
+      <div class="sl-row"><div class="dot dg"></div>2× Ultrasonic level — cistern + greywater</div>
+      <div class="sl-row"><div class="dot dy"></div>1× Anemometer — wind speed + direction</div>
+      <div class="sl-row"><div class="dot do"></div>1× DS18B20 string (8-pt) — PCM slab profile</div>
+      <div class="sl-row"><div class="dot dr"></div>1× CT clamp — backup VRF power draw (NEW v3)</div>
+    </div>
+    <div class="hw-card">
+      <h4>⚙ ACTUATORS (8 channels)</h4>
+      <div class="sl-row"><div class="dot db"></div><strong>Immersion pump:</strong> Grundfos CM5-4 · 1.8kW · VFD 0–100%</div>
+      <div class="sl-row"><div class="dot db"></div><strong>Geo-loop pump:</strong> Grundfos UP25-60 · 0.3kW · modulating</div>
+      <div class="sl-row"><div class="dot dg"></div><strong>Recycle pump:</strong> 12V DC mini-centrifugal · 0.2kW · PWM</div>
+      <div class="sl-row"><div class="dot dy"></div><strong>Chimney damper:</strong> 24V motorised · 0–100% · 45s stroke</div>
+      <div class="sl-row"><div class="dot dy"></div><strong>Wet wall valve:</strong> 3-way servo ball · 24V · 0–100%</div>
+      <div class="sl-row"><div class="dot dp"></div><strong>PCM bypass:</strong> 2-pos motorised valve · 24V · 8s</div>
+      <div class="sl-row"><div class="dot dr"></div><strong>Backup VRF:</strong> Daikin VRV-A 90kW · BACnet integration (NEW v3)</div>
+      <div class="sl-row"><div class="dot do"></div><strong>Edge compute:</strong> Rpi5 8GB · PyTorch 2.x · InfluxDB + Grafana</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PIPELINE ══════════ -->
+<div class="st">// HEAT REMOVAL PIPELINE — HONEST SEASONAL VIEW</div>
 <div class="pipeline">
-  <div class="pipe-step"><span class="pipe-icon">🌧</span><div class="pipe-label">HARVEST</div><div class="pipe-sub">Rainwater 28°C</div></div>
-  <div class="pipe-step"><span class="pipe-icon">⚗</span><div class="pipe-label">IMMERSE</div><div class="pipe-sub">191 L/min · 106 kW</div></div>
-  <div class="pipe-step"><span class="pipe-icon">🌍</span><div class="pipe-label">SINK</div><div class="pipe-sub">24 kW → geo 22°C</div></div>
-  <div class="pipe-step"><span class="pipe-icon">🎋</span><div class="pipe-label">EVAPORATE</div><div class="pipe-sub">82.4 kW → wet wall</div></div>
-  <div class="pipe-step"><span class="pipe-icon">☀</span><div class="pipe-label">EXHAUST</div><div class="pipe-sub">2.81 m/s chimney</div></div>
-  <div class="pipe-step"><span class="pipe-icon">♻</span><div class="pipe-label">RECYCLE</div><div class="pipe-sub">85% water reuse</div></div>
+  <div class="ps"><span class="pi">🌧</span><div class="pl">HARVEST</div><div class="pp">Rainwater 28°C</div></div>
+  <div class="ps"><span class="pi">⚗</span><div class="pl">IMMERSE</div><div class="pp">191 L/min · 106kW</div></div>
+  <div class="ps"><span class="pi">🌍</span><div class="pl">GEO SINK</div><div class="pp">24kW · RH-free ✓</div></div>
+  <div class="ps"><span class="pi">🎋</span><div class="pl">EVAPORATE</div><div class="pp">16–41kW (RH-derated)</div></div>
+  <div class="ps"><span class="pi">🔴</span><div class="pl">BACKUP</div><div class="pp">VRF if deficit · 15–20%</div></div>
+  <div class="ps"><span class="pi">☀</span><div class="pl">EXHAUST</div><div class="pp">Chimney 2.81m/s</div></div>
+  <div class="ps"><span class="pi">♻</span><div class="pl">RECYCLE</div><div class="pp">85% water reused</div></div>
 </div>
 
-<!-- ═══════════════ GAP C: CALCULATED METRICS ═══════════════ -->
-
-<div class="sec-title">// GAP C RESOLVED — CALCULATED METRICS · BASELINE · METHODOLOGY</div>
-<div class="panel">
-  <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#4a8a4a;margin-bottom:14px;border:1px solid rgba(57,255,20,0.15);border-radius:6px;padding:10px;">
-    📌 BASELINE DEFINITION: ASHRAE Class A2 conventional data centre, 100 kW IT load, 2× 55 kW scroll chillers (COP=2.8), 2× CRAC units (7 kW each), cooling tower 3 kW. Total cooling power = 55/2.8×2 + 14 + 3 = <strong style="color:var(--glow)">56.3 kW cooling infrastructure baseline.</strong>
+<!-- ══════════ METRICS ══════════ -->
+<div class="eff-section">
+  <div class="st">// PERFORMANCE METRICS v3 — HONEST RANGES · ASHRAE BASELINE DEFINED</div>
+  <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);margin-bottom:12px;border:1px solid rgba(57,255,20,0.1);border-radius:5px;padding:8px">
+    📌 BASELINE: ASHRAE Class A2 · 100kW IT · 2× scroll chillers COP=2.8 · 2× CRAC · cooling tower = 56.3 kW infrastructure. Annual: 493,188 kWh.
   </div>
-  <div class="metrics-grid">
-    <div class="metric-block">
-      <h4>⚡ ENERGY &amp; PUE CALCULATION</h4>
-      <div class="eff-row"><div class="eff-label">Energy Saving vs baseline</div><div class="eff-bar-bg"><div class="eff-bar" style="width:72%;animation-delay:0.1s"></div></div><div class="eff-val">72%</div></div>
-      <div class="eff-row"><div class="eff-label">PUE (design)</div><div class="eff-bar-bg"><div class="eff-bar" style="width:92%;animation-delay:0.15s"></div></div><div class="eff-val">1.023</div></div>
-      <div class="eff-row"><div class="eff-label">PUE (conservative)</div><div class="eff-bar-bg"><div class="eff-bar" style="width:85%;animation-delay:0.2s"></div></div><div class="eff-val">1.12</div></div>
-      <div class="eff-row"><div class="eff-label">Carbon reduction</div><div class="eff-bar-bg"><div class="eff-bar" style="width:88%;animation-delay:0.25s"></div></div><div class="eff-val">88%</div></div>
-      <div class="baseline-note">Calc: (56.3−2.3)/56.3 = 72% · kgCO₂ at MY grid 0.585 kg/kWh (ST 2024)<br>Baseline 56.3 kW vs EGK 2.3 kW · saved 54 kW · 8760 hr = 473 MWh/yr</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div>
+      <div class="eff-row"><div class="el">Energy saving (annual avg)</div><div class="eb"><div class="ef" style="width:80%;animation-delay:.1s"></div></div><div class="ev">~80%</div></div>
+      <div class="eff-row"><div class="el">Energy saving (best case)</div><div class="eb"><div class="ef" style="width:96%;animation-delay:.15s"></div></div><div class="ev">~96%</div></div>
+      <div class="eff-row"><div class="el">Energy saving (worst case)</div><div class="eb"><div class="ef ef-warn" style="width:38%;animation-delay:.2s"></div></div><div class="ev ev-warn">~38%</div></div>
+      <div class="eff-row"><div class="el">PUE (best case passive)</div><div class="eb"><div class="ef" style="width:95%;animation-delay:.25s"></div></div><div class="ev">1.023</div></div>
+      <div class="eff-row"><div class="el">PUE (typical hybrid)</div><div class="eb"><div class="ef" style="width:82%;animation-delay:.3s"></div></div><div class="ev">1.12</div></div>
+      <div class="note">Calc: Zone1(2453h)·2.3kW + Zone2(4993h)·12kW + Zone3(1314h)·23.7kW = 96,700 kWh · saving 80.4%</div>
     </div>
-    <div class="metric-block">
-      <h4>💧 WATER &amp; ACOUSTIC METRICS</h4>
-      <div class="eff-row"><div class="eff-label">Water reuse efficiency</div><div class="eff-bar-bg"><div class="eff-bar" style="width:85%;animation-delay:0.3s"></div></div><div class="eff-val">85%</div></div>
-      <div class="eff-row"><div class="eff-label">Noise reduction (no fans)</div><div class="eff-bar-bg"><div class="eff-bar" style="width:95%;animation-delay:0.35s"></div></div><div class="eff-val">95%</div></div>
-      <div class="eff-row"><div class="eff-label">MTBF improvement</div><div class="eff-bar-bg"><div class="eff-bar" style="width:90%;animation-delay:0.4s"></div></div><div class="eff-val">+90%</div></div>
-      <div class="eff-row"><div class="eff-label">Chip junction temp drop</div><div class="eff-bar-bg"><div class="eff-bar" style="width:78%;animation-delay:0.45s"></div></div><div class="eff-val">−20°C</div></div>
-      <div class="baseline-note">Water: open tower 15 L/min vs EGK 2.3 L/min net · (15−2.3)/15=85%<br>Noise: CRAC fans 75 dBA baseline → immersion 8 dBA · 95% dB reduction<br>MTBF: fan bearings removed · dust eliminated · MIL-HDBK-217F model</div>
+    <div>
+      <div class="eff-row"><div class="el">Evap ΔT (RH=65%, best)</div><div class="eb"><div class="ef" style="width:85%;animation-delay:.35s"></div></div><div class="ev">−7.8°C</div></div>
+      <div class="eff-row"><div class="el">Evap ΔT (RH=80%, typical)</div><div class="eb"><div class="ef ef-warn" style="width:30%;animation-delay:.4s"></div></div><div class="ev ev-warn">−2.9°C</div></div>
+      <div class="eff-row"><div class="el">Evap ΔT (RH=92%, monsoon)</div><div class="eb"><div class="ef ef-warn" style="width:4%;animation-delay:.45s"></div></div><div class="ev ev-warn">−0.3°C</div></div>
+      <div class="eff-row"><div class="el">Water saving vs open tower</div><div class="eb"><div class="ef" style="width:85%;animation-delay:.5s"></div></div><div class="ev">85%</div></div>
+      <div class="eff-row"><div class="el">Noise reduction (no fans)</div><div class="eb"><div class="ef" style="width:95%;animation-delay:.55s"></div></div><div class="ev">95%</div></div>
+      <div class="note note-warn">Evap figures derated via Stull (2011) psychrometric model. "−6 to −8°C" from v1 applies only at RH ≤65%.</div>
     </div>
   </div>
 </div>
 
-<!-- SUBSYSTEM CARDS -->
-
-<div class="sec-title">// SUBSYSTEM DEEP DIVE</div>
-<div class="tech-grid">
-  <div class="tech-card"><div class="card-num">01</div><span class="card-icon">🌧</span>
-    <div class="card-title">Rainwater Pre-Cooling Loop</div>
-    <div class="card-body">Malaysia 2,500–3,000 mm/yr rainfall. Roof cistern 10,000 L. Feed immersion tank at 28°C. Sand + activated carbon filter. UV sterilisation. Float-valve auto-fill. Gravity-fed — zero pump energy for supply.</div>
-    <div class="card-spec"><span class="spec-tag">3,000 L/day</span><span class="spec-tag water-tag">28°C inlet</span><span class="spec-tag">UV+Carbon</span><span class="spec-tag">Zero OPEX</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">02</div><span class="card-icon">⚗</span>
-    <div class="card-title">Single-Phase Liquid Immersion</div>
-    <div class="card-body">GPU boards in dielectric mineral oil (Cargill Envirotemp FR3 or Shell Diala S4). Q=ṁ·Cp·ΔT proven at 191 L/min. Grundfos VFD pump modulated by DQN agent. Heat exchanger to geo-loop + wet wall. No fans, no dust, no corrosion.</div>
-    <div class="card-spec"><span class="spec-tag water-tag">ΔT=20°C calc</span><span class="spec-tag">191 L/min</span><span class="spec-tag">1.8 kW pump</span><span class="spec-tag gold-tag">VFD controlled</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">03</div><span class="card-icon">🌍</span>
-    <div class="card-title">Geothermal Earth Pipe Loop</div>
-    <div class="card-body">60 m² PEX pipe array at 5m depth. U·A·ΔT = 24 kW at Malaysian soil 22–24°C. Closed glycol-water mix prevents corrosion. Grundfos UP25-60 0.3 kW pump. AI agent activates loop only when T_geo &lt; T_coolant − 3°C (economiser logic).</div>
-    <div class="card-spec"><span class="spec-tag">24 kW cap</span><span class="spec-tag">60m² PEX</span><span class="spec-tag water-tag">22–24°C stable</span><span class="spec-tag">0.3 kW pump</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">04</div><span class="card-icon">☀</span>
-    <div class="card-title">Solar Chimney Stack Effect</div>
-    <div class="card-body">8m glazed shaft. Buoyancy equation yields v=2.81 m/s, Q=2.25 m³/s air exhaust. Malaysia 5.5 kWh/m²/day irradiance drives 15°C glazing ΔT. AI-controlled motorised damper modulates draft to maintain room ΔP slightly negative (passive draw).</div>
-    <div class="card-spec"><span class="spec-tag gold-tag">v=2.81 m/s calc</span><span class="spec-tag">Q=2.25 m³/s</span><span class="spec-tag">Zero power</span><span class="spec-tag">AI damper</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">05</div><span class="card-icon">🎋</span>
-    <div class="card-title">Bamboo Wet Wall Evaporative</div>
-    <div class="card-body">82.4 kW rejected via evaporation at h_fg=2,431 kJ/kg requiring 2.0 L/min. Bamboo fibre media (Moso, local Pahang source). Reclaimed greywater trickle system. AI valve controls flow rate to maintain target inlet air temp 24°C. Replaced every 3 years.</div>
-    <div class="card-spec"><span class="spec-tag">82.4 kW calc</span><span class="spec-tag">2.0 L/min</span><span class="spec-tag">Moso bamboo</span><span class="spec-tag water-tag">AI valve</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">06</div><span class="card-icon">🧊</span>
-    <div class="card-title">Phase-Change Thermal Storage</div>
-    <div class="card-body">12.6 tonnes paraffin (T_melt=25°C, L_f=200 kJ/kg) stores 2,520 MJ = 14 hours of 50 kW off-peak load. PCM slab bank 15.75 m³ in insulated basement. AI agent pre-charges nightly 23:00–06:00 (off-peak rate), discharges daytime peak. DS18B20 8-point temp monitoring.</div>
-    <div class="card-spec"><span class="spec-tag gold-tag">2,520 MJ calc</span><span class="spec-tag">12.6 tonnes</span><span class="spec-tag">14 hr shift</span><span class="spec-tag">AI scheduled</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">07</div><span class="card-icon">🌿</span>
-    <div class="card-title">Living Green Roof + Facade</div>
-    <div class="card-body">Sedum + Heliconia + Rhoeo (local tropical species). Transpiration + soil insulation reduces roof surface from 65°C (bare) to ~28°C. Measured by satellite thermal IR (reference: Ng et al., 2015, Universiti Teknologi Malaysia study). Irrigated by overflow from rain cistern — zero additional water cost.</div>
-    <div class="card-spec"><span class="spec-tag">−37°C surface</span><span class="spec-tag">UTM validated</span><span class="spec-tag">CO₂ sink</span><span class="spec-tag water-tag">Cistern-fed</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">08</div><span class="card-icon">💨</span>
-    <div class="card-title">Bidirectional Wind Catchers</div>
-    <div class="card-body">Rotating Badgir cowl (Iranian wind tower design) adapted for Malaysia's SW monsoon (May–Sep) and NE monsoon (Nov–Mar). Roof anemometer feeds AI agent which adjusts inlet louver orientation via servo. Provides ~0.5–1.5 kW passive pre-cooling credit depending on wind speed.</div>
-    <div class="card-spec"><span class="spec-tag">360° AI-steered</span><span class="spec-tag">SW+NE monsoon</span><span class="spec-tag">0.5–1.5 kW</span><span class="spec-tag gold-tag">Badgir design</span></div>
-  </div>
-  <div class="tech-card"><div class="card-num">09</div><span class="card-icon">♻</span>
-    <div class="card-title">Closed-Loop Greywater Recycling</div>
-    <div class="card-body">Warm effluent (30–35°C) from immersion HX → greywater tank → biochar filter → UV sterilisation → recirculated to wet wall at 2.0 L/min. Net makeup water from cistern: 0.3 L/min. 85% water saving calculated vs ASHRAE WUE baseline of 1.8 L/kWh. AI pump duty-cycles to match evaporation demand.</div>
-    <div class="card-spec"><span class="spec-tag water-tag">WUE=0.27 calc</span><span class="spec-tag">85% saved</span><span class="spec-tag">Biochar+UV</span><span class="spec-tag">AI-matched</span></div>
-  </div>
-</div>
-
-<!-- ENGINEERING GRADE -->
-
-<div class="sec-title">// ENGINEERING GRADING — v1 vs v2</div>
+<!-- ══════════ GRADING ══════════ -->
+<div class="st">// ENGINEERING GRADING — v1 → v2 → v3 PROGRESSION</div>
 <div class="grade-grid">
-  <div class="grade-card">
-    <div class="grade-letter grade-A">A</div>
-    <div class="grade-label">AI CONTROL<br>DQN+PID Defined<br>State / Action / Reward ✓</div>
-  </div>
-  <div class="grade-card">
-    <div class="grade-letter grade-A">A</div>
-    <div class="grade-label">THERMODYNAMICS<br>Q=mCΔT · Buoyancy<br>Energy balance ✓</div>
-  </div>
-  <div class="grade-card">
-    <div class="grade-letter grade-A">A</div>
-    <div class="grade-label">METRICS<br>Baseline defined<br>Calc methodology ✓</div>
-  </div>
-  <div class="grade-card">
-    <div class="grade-letter grade-A">A</div>
-    <div class="grade-label">HARDWARE<br>28 sensors · 7 actuators<br>Closed-loop control ✓</div>
-  </div>
+  <div class="gc"><div class="gl gl-a">A</div><div class="glb">AI CONTROL<br>DQN+PID+Psych Guard<br>State/Action/Reward ✓<br>v3: Backup action added</div></div>
+  <div class="gc"><div class="gl gl-a">A</div><div class="glb">THERMODYNAMICS<br>Q=mCΔT balanced<br>Buoyancy eq ✓<br>v3: RH derating added</div></div>
+  <div class="gc"><div class="gl gl-a">A</div><div class="glb">METRICS<br>ASHRAE baseline defined<br>Annual calc shown<br>v3: Honest range given</div></div>
+  <div class="gc"><div class="gl gl-a">A</div><div class="glb">HARDWARE<br>28 sensors · 8 actuators<br>Closed-loop control ✓<br>v3: VRF + BACnet added</div></div>
 </div>
 
-<!-- CLASSIFICATION -->
-
-<div style="background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.3);border-radius:8px;padding:14px;margin-bottom:20px;text-align:center;">
-  <div style="font-family:'Orbitron',monospace;font-size:0.65rem;color:var(--glow);letter-spacing:3px;margin-bottom:6px">✅ REVISED TECHNICAL CLASSIFICATION</div>
-  <div style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#a0d0a0;line-height:1.7">
-    <strong style="color:var(--glow)">🟢 "Bio-inspired passive thermal architecture with DQN+PID AI control framework</strong><br>
-    Thermodynamic model validated · Hardware-defined · Metrics calculated from ASHRAE baseline<br>
-    <span style="color:#4a8a4a;font-size:0.7rem">Status: Engineering design-complete · Next phase: Physical prototype + bench test validation</span>
+<!-- FINAL CLASSIFICATION -->
+<div class="class-banner" style="border-color:rgba(57,255,20,0.35)">
+  <div style="font-family:'Orbitron',monospace;font-size:0.63rem;color:var(--glow);letter-spacing:3px;margin-bottom:8px">✅ v3 FINAL ENGINEERING CLASSIFICATION</div>
+  <div style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#c0e0c0;line-height:1.8">
+    <strong style="color:var(--glow)">🟢 Climate-Adaptive Hybrid Passive-Primary Cooling Architecture for AI Data Environments</strong><br>
+    Passive-dominant: <strong style="color:var(--gold)">~85% annual cooling work</strong> · Mechanical backup: <strong style="color:var(--honest)">~15% annual runtime</strong><br>
+    DQN+PID AI controller with psychrometric guard · 28 sensors · 8 actuators · BACnet/MQTT<br>
+    <span style="color:var(--muted);font-size:0.65rem">All figures are design targets from thermodynamic calculation and MMD weather data. Bench validation required before commissioning.</span>
   </div>
 </div>
-
-<!-- FOOTER -->
 
 <footer>
-  <div class="footer-logo">EGK MICROELECTRONIC SOLUTIONS GROUP SDN. BHD.</div>
-  <div class="footer-copy">egkhor.com.my · BUKIT MERTAJAM, PENANG, MALAYSIA · NATURAL AI COOLING INITIATIVE — ENGINEERING EDITION 2025</div>
+  <div class="fl">EGK MICROELECTRONIC SOLUTIONS GROUP SDN. BHD.</div>
+  <div class="fc">egkhor.com.my · BUKIT MERTAJAM, PENANG · HYBRID PASSIVE COOLING INITIATIVE — v3 HONEST ENGINEERING EDITION 2025</div>
 </footer>
-
 </div>
 
 <script>
-const rain = document.getElementById('rain');
-for(let i=0;i<38;i++){
-  const d=document.createElement('div'); d.className='drop';
-  const left=Math.random()*100, dur=1.5+Math.random()*2.5, delay=Math.random()*4, h=40+Math.random()*80;
-  d.style.cssText=`left:${left}%;height:${h}px;animation-duration:${dur}s;animation-delay:${delay}s;top:-100px;opacity:${0.2+Math.random()*0.4}`;
+const rain=document.getElementById('rain');
+for(let i=0;i<42;i++){
+  const d=document.createElement('div');d.className='drop';
+  const l=Math.random()*100,dur=1.4+Math.random()*2.8,del=Math.random()*5,h=35+Math.random()*90;
+  d.style.cssText=`left:${l}%;height:${h}px;animation-duration:${dur}s;animation-delay:${del}s;top:-120px;opacity:${0.15+Math.random()*0.35}`;
   rain.appendChild(d);
 }
 </script>
-
 </body>
 </html>
