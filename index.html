@@ -241,6 +241,64 @@ footer{text-align:center;padding-top:15px;border-top:1px solid rgba(57,255,20,0.
   .stats{grid-template-columns:repeat(3,1fr)!important}
   .pipeline{flex-wrap:wrap}.ps{min-width:40%}.ps::after{display:none}
 }
+
+/* === SCENARIO TABLE === */
+
+.scenario-section {
+  margin-bottom: 28px;
+}
+
+.scenario-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(5,20,5,0.85);
+  border: 1px solid rgba(57,255,20,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Space Mono', monospace;
+}
+
+.scenario-table th {
+  background: rgba(57,255,20,0.08);
+  color: var(--glow);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.scenario-table td {
+  padding: 10px;
+  font-size: 0.75rem;
+  text-align: center;
+  color: #a0d0a0;
+  border-top: 1px solid rgba(57,255,20,0.1);
+}
+
+.scenario-table tr:hover {
+  background: rgba(57,255,20,0.05);
+}
+
+/* Status colors */
+.status {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+tr[data-status="pass"] .status {
+  color: #39ff14;
+  text-shadow: 0 0 8px #39ff14;
+}
+
+tr[data-status="degraded"] .status {
+  color: #ffd600;
+  text-shadow: 0 0 8px #ffd600;
+}
+
+tr[data-status="critical"] .status {
+  color: #e53935;
+  text-shadow: 0 0 8px #e53935;
+}
 </style>
 </head>
 <body>
@@ -822,6 +880,53 @@ footer{text-align:center;padding-top:15px;border-top:1px solid rgba(57,255,20,0.
   </div>
 </div>
 
+<!-- SCENARIO SIMULATION TABLE -->
+
+<div class="scenario-section">
+  <div class="sec-title">// OPERATING SCENARIO SIMULATION</div>
+
+  <table class="scenario-table">
+    <thead>
+      <tr>
+        <th>Scenario</th>
+        <th>Ambient Temp</th>
+        <th>Humidity</th>
+        <th>Wind</th>
+        <th>Cooling Capacity</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-status="pass">
+        <td>Normal Operation</td>
+        <td>30°C</td>
+        <td>70%</td>
+        <td>Moderate</td>
+        <td>115 kW</td>
+        <td class="status">PASS</td>
+      </tr>
+
+      <tr data-status="degraded">
+        <td>Hot & Humid</td>
+        <td>34°C</td>
+        <td>90%</td>
+        <td>Low</td>
+        <td>95 kW</td>
+        <td class="status">DEGRADED</td>
+      </tr>
+
+      <tr data-status="critical">
+        <td>Extreme Limit</td>
+        <td>35°C</td>
+        <td>95%</td>
+        <td>Still Air</td>
+        <td>70 kW</td>
+        <td class="status">AC REQUIRED</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <!-- GRADING -->
 <div class="st">// ENGINEERING GRADING v5 — ALL GAPS RESOLVED</div>
 <div class="grade-grid">
@@ -866,6 +971,27 @@ for(let i=0;i<38;i++){
   d.style.cssText=`left:${l}%;height:${h}px;animation-duration:${dur}s;animation-delay:${del}s;top:-120px;opacity:${0.12+Math.random()*0.28}`;
   rain.appendChild(d);
 }
+
+  <script>
+const REQUIRED_LOAD = 106.4;
+
+document.querySelectorAll('.scenario-table tbody tr').forEach(row => {
+  const capacity = parseFloat(row.children[4].innerText);
+
+  let statusCell = row.querySelector('.status');
+
+  if (capacity >= REQUIRED_LOAD) {
+    row.dataset.status = "pass";
+    statusCell.innerText = "PASS";
+  } else if (capacity >= 85) {
+    row.dataset.status = "degraded";
+    statusCell.innerText = "DEGRADED";
+  } else {
+    row.dataset.status = "critical";
+    statusCell.innerText = "AC REQUIRED";
+  }
+});
+</script>
 </script>
 </body>
 </html>
